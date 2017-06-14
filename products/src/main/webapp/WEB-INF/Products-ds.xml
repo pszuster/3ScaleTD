@@ -5,7 +5,7 @@
  <datasource jndi-name="java:jboss/datasources/PostgreSQL" enabled="true" 
      use-java-context="true" pool-name="PostgreSQL">
   <connection-url>jdbc:postgresql://productsdb:5432/RHMart</connection-url>
-  <driver>postgresql-9.4-1201.jdbc4.jar</driver>
+  <driver>postgresql-jdbc.jar</driver>
   <pool></pool>
   <security>
    <user-name>admin</user-name>
