@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datasources xmlns="http://www.ironjacamar.org/doc/schema"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://www.ironjacamar.org/doc/schema http://www.ironjacamar.org/doc/schema/datasources_1_0.xsd">
+ <datasource jndi-name="java:jboss/datasources/PostgreSQL" enabled="true" 
+     use-java-context="true" pool-name="PostgreSQL">
+  <connection-url>jdbc:postgresql://productsdb:5432/RHMart</connection-url>
+  <driver>postgresql-9.4-1201.jdbc4.jar</driver>
+  <pool></pool>
+  <security>
+   <user-name>admin</user-name>
+   <password>password</password>
+  </security>
+ </datasource>
+</datasources>
