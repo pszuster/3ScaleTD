@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datasources xmlns="http://www.ironjacamar.org/doc/schema"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://www.ironjacamar.org/doc/schema http://www.ironjacamar.org/doc/schema/datasources_1_0.xsd">
+ <datasource jndi-name="java:jboss/datasources/RHMartStores" enabled="true" 
+     use-java-context="true" pool-name="MySQL">
+  <connection-url>jdbc:mysql://storesdb:3306/stores</connection-url>
+  <driver>mysql</driver>
+  <security>
+   <user-name>admin</user-name>
+   <password>password</password>
+  </security>
+ </datasource>
+</datasources>
