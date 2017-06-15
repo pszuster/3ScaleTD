@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.rhmart.com/Stores/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Stores" targetNamespace="http://www.rhmart.com/Stores/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.rhmart.com/Stores/">
+      <xsd:element name="getAllStores">
+        <xsd:complexType>
+          <xsd:sequence>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getAllStoresResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Stores" type="tns:StoresType"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:complexType name="StoresType">
+      	<xsd:sequence>
+      		<xsd:element name="store" type="tns:StoreType" maxOccurs="unbounded" minOccurs="1"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="getStore">
+            	<xsd:complexType>
+            		<xsd:sequence>
+            			<xsd:element name="storeID" type="xsd:int"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="getStoreResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+            			<xsd:element name="store" type="tns:StoreType"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+    
+            <xsd:complexType name="StoreType">
+            	<xsd:sequence>
+            		<xsd:element name="storeID" type="xsd:int"></xsd:element>
+            		<xsd:element name="storeName" type="xsd:string"></xsd:element>
+            		<xsd:element name="storeLat" type="xsd:double"></xsd:element>
+            		<xsd:element name="storeLong" type="xsd:double"></xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+            <xsd:element name="createStore">
+            	<xsd:complexType>
+            		<xsd:sequence>
+            			<xsd:element name="store" type="tns:StoreType"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="createStoreResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+            			<xsd:element name="response" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="deleteStore">
+            	<xsd:complexType>
+            		<xsd:sequence>
+            			<xsd:element name="storeID" type="xsd:int"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="deleteStoreResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+            			<xsd:element name="response" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getAllStoresRequest">
+    <wsdl:part element="tns:getAllStores" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="getAllStoresResponse">
+    <wsdl:part element="tns:getAllStoresResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="getStoreRequest">
+  	<wsdl:part name="parameters" element="tns:getStore"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getStoreResponse">
+  	<wsdl:part name="parameters" element="tns:getStoreResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createStoreRequest">
+  	<wsdl:part name="parameters" element="tns:createStore"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createStoreResponse">
+  	<wsdl:part name="parameters" element="tns:createStoreResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteStoreRequest">
+  	<wsdl:part name="parameters" element="tns:deleteStore"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteStoreResponse">
+  	<wsdl:part name="parameters" element="tns:deleteStoreResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="Stores">
+    <wsdl:operation name="getAllStores">
+      <wsdl:input message="tns:getAllStoresRequest"/>
+      <wsdl:output message="tns:getAllStoresResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getStore">
+    	<wsdl:input message="tns:getStoreRequest"></wsdl:input>
+    	<wsdl:output message="tns:getStoreResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createStore">
+    	<wsdl:input message="tns:createStoreRequest"></wsdl:input>
+    	<wsdl:output message="tns:createStoreResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteStore">
+    	<wsdl:input message="tns:deleteStoreRequest"></wsdl:input>
+    	<wsdl:output message="tns:deleteStoreResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="StoresSOAP" type="tns:Stores">
+  	<soap:binding style="document"
+  		transport="http://schemas.xmlsoap.org/soap/http" />
+  	<wsdl:operation name="getAllStores">
+  		<soap:operation
+  			soapAction="http://www.rhmart.com/Stores/getAllStores" />
+  		<wsdl:input>
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="getStore">
+  		<soap:operation
+  			soapAction="http://www.rhmart.com/Stores/getStore" />
+  		<wsdl:input>
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="createStore">
+  		<soap:operation
+  			soapAction="http://www.rhmart.com/Stores/createStore" />
+  		<wsdl:input>
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  	<wsdl:operation name="deleteStore">
+  		<soap:operation
+  			soapAction="http://www.rhmart.com/Stores/deleteStore" />
+  		<wsdl:input>
+  			<soap:body use="literal" />
+  		</wsdl:input>
+  		<wsdl:output>
+  			<soap:body use="literal" />
+  		</wsdl:output>
+  	</wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Stores">
+    <wsdl:port binding="tns:StoresSOAP" name="StoresSOAP">
+      <soap:address location="http://www.example.org/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
