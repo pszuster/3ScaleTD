@@ -8,6 +8,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+import com.redhat.model.Store;
+
 
 /**
  * <p>Java class for StoresType complex type.
@@ -35,7 +37,7 @@ import javax.xml.bind.annotation.XmlType;
 public class StoresType {
 
     @XmlElement(required = true)
-    protected List<StoreType> store;
+    protected List<Store> store;
 
     /**
      * Gets the value of the store property.
@@ -59,9 +61,9 @@ public class StoresType {
      * 
      * 
      */
-    public List<StoreType> getStore() {
+    public List<Store> getStore() {
         if (store == null) {
-            store = new ArrayList<StoreType>();
+            store = new ArrayList<Store>();
         }
         return this.store;
     }

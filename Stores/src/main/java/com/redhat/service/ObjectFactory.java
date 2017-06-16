@@ -3,6 +3,8 @@ package com.redhat.service;
 
 import javax.xml.bind.annotation.XmlRegistry;
 
+import com.redhat.model.Store;
+
 
 /**
  * This object contains factory methods for each 
@@ -73,8 +75,8 @@ public class ObjectFactory {
      * Create an instance of {@link StoreType }
      * 
      */
-    public StoreType createStoreType() {
-        return new StoreType();
+    public Store createStore() {
+        return new Store();
     }
 
     /**

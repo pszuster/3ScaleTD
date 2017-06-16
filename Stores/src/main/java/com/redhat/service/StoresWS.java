@@ -1,30 +1,39 @@
 package com.redhat.service;
 
-@javax.jws.WebService(endpointInterface="com.redhat.service.Stores")
-public class StoresWS implements Stores {
+import javax.inject.Inject;
+import javax.jws.WebService;
 
+import com.redhat.model.Store;
+import com.redhat.model.StoreDao;
+
+@WebService(endpointInterface="com.redhat.service.Stores")
+public class StoresWS implements Stores {
+	
+	@Inject
+	StoreDao storeDAO;
+	
 	@Override
-	public String createStore(StoreType store) {
-		// TODO Auto-generated method stub
-		return "CREATED";
+	public String createStore(Store store) {
+		storeDAO.createStore(store);
+		return "Store ID:" + store.getStoreID() + " CREATED";
 	}
 
 	@Override
 	public String deleteStore(int storeID) {
-		// TODO Auto-generated method stub
-		return "DELETED";
+		storeDAO.deleteStore(storeID);
+		return "Store ID: " + storeID + " DELETED";
 	}
 
 	@Override
-	public StoreType getStore(int storeID) {
-		// TODO Auto-generated method stub
-		return null;
+	public Store getStore(int storeID) {
+		return storeDAO.getStoreById(storeID);
 	}
 
 	@Override
 	public StoresType getAllStores() {
-		// TODO Auto-generated method stub
-		return null;
+		StoresType st = new StoresType();
+		st.store = storeDAO.getAll();
+		return st;
 	}
 
 }

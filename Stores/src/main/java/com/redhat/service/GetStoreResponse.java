@@ -7,6 +7,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import com.redhat.model.Store;
+
 
 /**
  * <p>Java class for anonymous complex type.
@@ -18,7 +20,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="store" type="{http://www.rhmart.com/Stores/}StoreType"/&gt;
+ *         &lt;element name="store" type="{http://www.rhmart.com/Stores/}Store"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -35,17 +37,17 @@ import javax.xml.bind.annotation.XmlType;
 public class GetStoreResponse {
 
     @XmlElement(required = true)
-    protected StoreType store;
+    protected Store store;
 
     /**
      * Gets the value of the store property.
      * 
      * @return
      *     possible object is
-     *     {@link StoreType }
+     *     {@link Store }
      *     
      */
-    public StoreType getStore() {
+    public Store getStore() {
         return store;
     }
 
@@ -54,10 +56,10 @@ public class GetStoreResponse {
      * 
      * @param value
      *     allowed object is
-     *     {@link StoreType }
+     *     {@link Store }
      *     
      */
-    public void setStore(StoreType value) {
+    public void setStore(Store value) {
         this.store = value;
     }
 
