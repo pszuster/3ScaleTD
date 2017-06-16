@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://service.redhat.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://www.rhmart.com/Stores/" name="StoresWSService" targetNamespace="http://service.redhat.com/">
+  <wsdl:import location="http://stores-soap.3scale1.rhtechofficelatam.com/StoresWS?wsdl=Stores.wsdl" namespace="http://www.rhmart.com/Stores/">
+    </wsdl:import>
+  <wsdl:binding name="StoresWSServiceSoapBinding" type="ns1:Stores">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="createStore">
+      <soap:operation soapAction="http://www.rhmart.com/Stores/createStore" style="document"/>
+      <wsdl:input name="createStore">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createStoreResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteStore">
+      <soap:operation soapAction="http://www.rhmart.com/Stores/deleteStore" style="document"/>
+      <wsdl:input name="deleteStore">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteStoreResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStore">
+      <soap:operation soapAction="http://www.rhmart.com/Stores/getStore" style="document"/>
+      <wsdl:input name="getStore">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getStoreResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllStores">
+      <soap:operation soapAction="http://www.rhmart.com/Stores/getAllStores" style="document"/>
+      <wsdl:input name="getAllStores">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAllStoresResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="StoresWSService">
+    <wsdl:port binding="tns:StoresWSServiceSoapBinding" name="StoresWSPort">
+      <soap:address location="http://stores-soap.3scale1.rhtechofficelatam.com/StoresWS"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
