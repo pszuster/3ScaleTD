@@ -14,6 +14,7 @@ public class StoresWS implements Stores {
 	
 	@Override
 	public String createStore(Store store) {
+		store = new Store(store.getStoreName(),store.getStoreLat(),store.getStoreLong());
 		storeDAO.createStore(store);
 		return "Store ID:" + store.getStoreID() + " CREATED";
 	}

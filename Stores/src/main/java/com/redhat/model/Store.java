@@ -70,4 +70,11 @@ public class Store implements Serializable {
 		this.storeName = storeName;
 	}
 
+	public Store(String storeName, double storeLat, double storeLong) {
+		super();
+		this.storeName = storeName;
+		this.storeLat = storeLat;
+		this.storeLong = storeLong;
+	}
+
 }
