@@ -17,7 +17,7 @@
         <property name="urlMappings" value="/*"/>
     </bean>
     <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
-        <restConfiguration bindingMode="auto" component="servlet" enableCORS="true"/>
+        <restConfiguration bindingMode="auto" component="servlet" enableCORS="true" apiContextPath="/api-docs" />
         <rest path="/">
             <post consumes="application/json"
                 outType="com.redhat.service.CreateStoreResponse"
