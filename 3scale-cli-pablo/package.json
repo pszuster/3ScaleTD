@@ -1,0 +1,51 @@
+{
+  "name": "node-3scale-cli-pablo",
+  "description": "A command line interface for 3scale API management",
+  "version": "0.10.1",
+  "main": "index.js",
+  "author": {
+    "name": "picsoung",
+    "email": "picsoung@users.noreply.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:3scale/3scale-cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/3scale/3scale-cli/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT"
+    }
+  ],
+  "preferGlobal": true,
+  "bin": {
+    "3scale-cli": "./bin/3scale-cli"
+  },
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "dependencies": {
+    "3scale-lambda": "^1.0.0",
+    "async": "^1.4.2",
+    "colors": "^0.6.2",
+    "commander": "^2.2.0",
+    "delay-promise": "^2.1.0",
+    "easy-table": "^1.0.0",
+    "inquirer": "^0.9.0",
+    "mkdirp": "^0.5.1",
+    "nconf": "^0.7.2",
+    "os-homedir": "^1.0.1",
+    "prettyjson": "*",
+    "prompt": "^1.0.0",
+    "q": "^1.4.1",
+    "raml-1-parser": "*",
+    "request": "^2.60.0",
+    "slug": "^0.9.1",
+    "swagger-parser": "^3.0.0",
+    "underscore": "*"
+  },
+  "keywords": [],
+  "devDependencies": {}
+}
