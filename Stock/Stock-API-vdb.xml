@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<vdb name="Stock-API" version="1">
+<description/>
+<property name="validationDateTime" value="Wed Jun 21 20:20:56 ART 2017"/>
+<property name="validationVersion" value="9.0.0"/>
+<model name="FederatedStock" type="VIRTUAL">
+<property name="imports" value="StockPG"/>
+<metadata type="DDL"><![CDATA[
+
+CREATE VIEW stock (
+	productid integer OPTIONS(NATIVE_TYPE 'INT', UPDATABLE 'FALSE', FIXED_LENGTH 'TRUE'),
+	storeid integer OPTIONS(NATIVE_TYPE 'INT', UPDATABLE 'FALSE', FIXED_LENGTH 'TRUE'),
+	amount double OPTIONS(NATIVE_TYPE 'DOUBLE', UPDATABLE 'FALSE', FIXED_LENGTH 'TRUE')
+) 
+AS
+	SELECT * FROM StockMySQL.stock UNION ALL SELECT * FROM StockPG.stock;
+
+]]></metadata>
+</model>
+<model name="StockMySQL">
+<source connection-jndi-name="Stock_MySQL_DS" name="StockMySQL" translator-name="mysql5"/>
+<metadata type="DDL"><![CDATA[
+
+CREATE FOREIGN TABLE stock (
+	productid integer OPTIONS(NAMEINSOURCE '`productid`', NATIVE_TYPE 'INT', FIXED_LENGTH 'TRUE'),
+	storeid integer OPTIONS(NAMEINSOURCE '`storeid`', NATIVE_TYPE 'INT', FIXED_LENGTH 'TRUE'),
+	amount double OPTIONS(NAMEINSOURCE '`amount`', NATIVE_TYPE 'DOUBLE', FIXED_LENGTH 'TRUE')
+) OPTIONS(NAMEINSOURCE '`Stores`.`stock`', UPDATABLE 'TRUE');
+
+]]></metadata>
+</model>
+<model name="StockPG">
+<source connection-jndi-name="StockPG_DS" name="StockPG" translator-name="postgresql"/>
+<metadata type="DDL"><![CDATA[
+
+CREATE FOREIGN TABLE stock (
+	prodid integer OPTIONS(NAMEINSOURCE '"prodid"', NATIVE_TYPE 'int4', FIXED_LENGTH 'TRUE'),
+	storeid integer OPTIONS(NAMEINSOURCE '"storeid"', NATIVE_TYPE 'int4', FIXED_LENGTH 'TRUE'),
+	amount double OPTIONS(NAMEINSOURCE '"amount"', NATIVE_TYPE 'float8', FIXED_LENGTH 'TRUE')
+) OPTIONS(NAMEINSOURCE '"public"."stock"', UPDATABLE 'TRUE');
+
+]]></metadata>
+</model>
+</vdb>
