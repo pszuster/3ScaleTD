@@ -1,0 +1,23 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.jboss.teiid.quickstart</groupId>
+    <artifactId>Stock-API</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+    <name>Stock API</name>
+    <description>Stock API Parent</description>
+
+    <profiles>
+        <profile>
+            <activation>
+                <property>
+                    <name>env.VDB_DIRS</name>
+                    <value>.</value>
+                </property>
+            </activation>
+        </profile>
+    </profiles>
+
+</project>
