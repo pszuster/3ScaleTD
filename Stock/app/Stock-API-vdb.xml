@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <vdb name="Stock-API" version="1">
 <description/>
-<property name="validationDateTime" value="Wed Jun 21 20:20:56 ART 2017"/>
+<property name="validationDateTime" value="Thu Jun 22 16:16:57 ART 2017"/>
 <property name="validationVersion" value="9.0.0"/>
+<property name="validationVersion" value="9.0.0"/>
+<property name="validationDateTime" value="Wed Jun 21 20:20:56 ART 2017"/>
 <model name="FederatedStock" type="VIRTUAL">
 <property name="imports" value="StockPG"/>
 <metadata type="DDL"><![CDATA[
@@ -10,7 +12,8 @@
 CREATE VIEW stock (
 	productid integer OPTIONS(NATIVE_TYPE 'INT', UPDATABLE 'FALSE', FIXED_LENGTH 'TRUE'),
 	storeid integer OPTIONS(NATIVE_TYPE 'INT', UPDATABLE 'FALSE', FIXED_LENGTH 'TRUE'),
-	amount double OPTIONS(NATIVE_TYPE 'DOUBLE', UPDATABLE 'FALSE', FIXED_LENGTH 'TRUE')
+	amount double OPTIONS(NATIVE_TYPE 'DOUBLE', UPDATABLE 'FALSE', FIXED_LENGTH 'TRUE'),
+	CONSTRAINT prodstoreKey PRIMARY KEY(productid, storeid)
 ) 
 AS
 	SELECT * FROM StockMySQL.stock UNION ALL SELECT * FROM StockPG.stock;
