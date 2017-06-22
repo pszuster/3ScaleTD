@@ -37,7 +37,7 @@ CREATE FOREIGN TABLE stock (
 <metadata type="DDL"><![CDATA[
 
 CREATE FOREIGN TABLE stock (
-	prodid integer OPTIONS(NAMEINSOURCE '"prodid"', NATIVE_TYPE 'int4', FIXED_LENGTH 'TRUE'),
+	productid integer OPTIONS(NAMEINSOURCE '"prodid"', NATIVE_TYPE 'int4', FIXED_LENGTH 'TRUE'),
 	storeid integer OPTIONS(NAMEINSOURCE '"storeid"', NATIVE_TYPE 'int4', FIXED_LENGTH 'TRUE'),
 	amount double OPTIONS(NAMEINSOURCE '"amount"', NATIVE_TYPE 'float8', FIXED_LENGTH 'TRUE')
 ) OPTIONS(NAMEINSOURCE '"public"."stock"', UPDATABLE 'TRUE');
