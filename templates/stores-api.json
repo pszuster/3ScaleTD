@@ -137,7 +137,7 @@
   "apiVersion": "v1",
   "kind": "ConfigMap",
   "metadata": {
-    "name": "create-db",
+    "name": "create-db"
   },
   "data": {
     "create_db.sql": "CREATE TABLE stores (storeID int(11) NOT NULL AUTO_INCREMENT,storeName varchar(45) DEFAULT NULL,storeLat double DEFAULT NULL,storeLong double DEFAULT NULL,PRIMARY KEY (storeID)) "
