@@ -140,7 +140,7 @@
     "name": "create-db"
   },
   "data": {
-    "create_db.sql": "CREATE TABLE stores (storeID int(11) NOT NULL AUTO_INCREMENT,storeName varchar(45) DEFAULT NULL,storeLat double DEFAULT NULL,storeLong double DEFAULT NULL,PRIMARY KEY (storeID)); INSERT INTO stores(storeID,storeName) VALUES (1,'Downtown'), (2,'EastSide'); "
+    "create_db.sql": "CREATE TABLE stores (storeID int(11) NOT NULL AUTO_INCREMENT,storeName varchar(45) DEFAULT NULL,storeLat double DEFAULT NULL,storeLong double DEFAULT NULL,PRIMARY KEY (storeID)); INSERT INTO stores(storeID,storeName,storeLat,storeLong) VALUES (1,'Downtown',-34.6052704,-58.3791766), (2,'EastSide',-34.5975668,-58.3710199); "
   }
 },
 {
