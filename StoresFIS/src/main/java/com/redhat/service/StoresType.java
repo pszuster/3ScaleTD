@@ -67,5 +67,8 @@ public class StoresType {
         }
         return this.store;
     }
+    public void setStore(ArrayList<Store> stores){
+    	this.store = stores;
+    }
 
 }

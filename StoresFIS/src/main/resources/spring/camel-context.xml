@@ -17,7 +17,8 @@
         <property name="urlMappings" value="/*"/>
     </bean>
     <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
-        <restConfiguration bindingMode="auto" component="servlet" enableCORS="true" apiContextPath="/api-docs" />
+        <restConfiguration apiContextPath="/api-docs" bindingMode="auto"
+            component="servlet" enableCORS="true"/>
         <rest path="/">
             <post consumes="application/json"
                 outType="com.redhat.service.CreateStoreResponse"
@@ -28,12 +29,12 @@
                 type="com.redhat.service.DeleteStore" uri="/store/{storeID}">
                 <to uri="direct:deleteStore"/>
             </delete>
-            <get bindingMode="json" outType="com.redhat.model.Store"
+            <get bindingMode="json" outType="com.redhat.service.GetStoreResponse"
                 produces="application/json"
                 type="com.redhat.service.GetStore" uri="/store/{storeID}">
                 <to uri="direct:getStore"/>
             </get>
-            <get outType="com.redhat.service.GetAllStoresResponse"
+            <get outType="com.redhat.service.StoresType" produces="application/json" bindingMode="json" 
                 type="com.redhat.service.GetAllStores" uri="/allstores/">
                 <to uri="direct:getAllStores"/>
             </get>
@@ -81,9 +82,9 @@
         <route id="soapRoute">
             <from id="_from5" uri="direct:soap"/>
             <camel:toD id="tod" uri="cxf:bean:wsStores?defaultOperationName=${header.soapMethod}&amp;exchangePattern=InOut"/>
-            <setBody id="_setBodySoap">
+                       <setBody id="_setBodySoap">
                 <simple>${body[0]}</simple>
-            </setBody>
+            </setBody> 
             <setHeader headerName="Content-Type" id="_setHeaderContextType">
                 <constant>application/json</constant>
             </setHeader>
