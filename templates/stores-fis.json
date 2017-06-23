@@ -103,7 +103,30 @@
       "status": {
         "dockerImageRepository": ""
       }
-    },
+    },{
+            "kind": "Service",
+            "apiVersion": "v1",
+            "spec": {
+                "ports": [
+                    {
+                        "port": 8080,
+                        "targetPort": 8080
+                    }
+                ],
+                "selector": {
+                    "deploymentConfig": "${APP_NAME}"
+                }
+            },
+            "metadata": {
+                "name": "${APP_NAME}",
+                "labels": {
+                    "application": "${APP_NAME}"
+                },
+                "annotations": {
+                    "description": "The web server's http port."
+                }
+            }
+        },
     {
       "kind": "Route",
       "apiVersion": "v1",
@@ -242,7 +265,7 @@
         "replicas": 1,
         "selector": {
           "component": "${APP_NAME}",
-          "deploymentconfig": "${APP_NAME}",
+          "deploymentConfig": "${APP_NAME}",
           "group": "quickstarts",
           "project": "${APP_NAME}",
           "provider": "s2i"
@@ -252,7 +275,7 @@
             "creationTimestamp": null,
             "labels": {
               "component": "${APP_NAME}",
-              "deploymentconfig": "${APP_NAME}",
+              "deploymentConfig": "${APP_NAME}",
               "group": "quickstarts",
               "project": "${APP_NAME}",
               "provider": "s2i"
@@ -281,6 +304,10 @@
                   {
                     "containerPort": 8778,
                     "name": "jolokia"
+                  },
+		{
+                    "containerPort": 8080,
+                    "name": "http"
                   }
                 ],
                 "env" : [ {
