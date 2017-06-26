@@ -14,11 +14,16 @@ import javax.ws.rs.core.MediaType;
 
 
 import com.google.gson.Gson;
+import com.redhat.model.JsonResponse;
 import com.redhat.model.Product;
 import com.redhat.model.ProductDao;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 
 @Path("/services")
+@Api(value="services")
 @Produces("application/json")
 public class ProductServices {
 
@@ -28,14 +33,10 @@ public class ProductServices {
 	@Path("/products")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public String getAllProducts(){
-        Gson gson = new Gson();
-        String resp="";
-        try{
+
+	public List<Product> getAllProducts(){
          List<Product> prod= productDAO.getAll();
-         resp=gson.toJson(prod);
-        }catch(Exception e){resp="{\"error\": \"" + e.getMessage() + "\"}";};
-        return resp;
+        return prod;
 		
 	}
 	
@@ -43,18 +44,8 @@ public class ProductServices {
 	@Path("/product/{productId}")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public String getProduct(@PathParam("productId") Integer productId){
-        Gson gson = new Gson();
-        String resp="";
-        Product prod=null;
-        try{
-         prod= productDAO.getProductById(productId);
-         if(prod==null)
-        	 resp="{\"error\": \"Product not found\" }";
-         else
-        	 resp=gson.toJson(prod);
-        }catch(Exception e){resp="{\"error\": \"" + e.getMessage() + "\"}";};
-        return resp;
+	public Product getProduct(@PathParam("productId") Integer productId){
+        return productDAO.getProductById(productId);
 		
 	}
 	
@@ -62,25 +53,25 @@ public class ProductServices {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	//public String createProduct(String product){
-	public String createProduct(Product product){
-		String resp="";
+	public JsonResponse createProduct(Product product){
+		JsonResponse jr =  new JsonResponse("");
 		try{
 			productDAO.createProduct(product);
-		}catch(Exception e){resp="{\"error\": \"" + e.getMessage() + "\"}";};
+		}catch(Exception e){jr.setMessage(e.getMessage()); return jr;};
 		
-		return "{ \"result\": \"Product created\"}";
+		jr.setMessage("Product created");
+		return jr;
 	}
 	
 	@Path("/product/{productId}")
-	//@ApiOperation(value = "productDelete")
 	@DELETE
 	@Produces(MediaType.APPLICATION_JSON)
-	public String deleteProduct(@PathParam("productId") Integer productId){
-		String resp="";
+	public JsonResponse deleteProduct(@PathParam("productId") Integer productId){
+		JsonResponse jr =  new JsonResponse("");
 		try{
 			productDAO.deleteProduct(productId);
-		}catch (Exception e) { return "{\"error\": \"" + e.getMessage() + "\"}";};
-		return "{\"result\": \"Product " + productId + " deleted\"}";
+		}catch (Exception e) { jr.setMessage(e.getMessage()); return jr;};
+		jr.setMessage("Product " + productId + " deleted");
+		return jr;
 	}
 }

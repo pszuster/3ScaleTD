@@ -4,12 +4,15 @@
    xsi:schemaLocation="http://www.ironjacamar.org/doc/schema http://www.ironjacamar.org/doc/schema/datasources_1_0.xsd">
  <datasource jndi-name="java:jboss/datasources/RHMart" enabled="true" 
      use-java-context="true" pool-name="PostgreSQL">
-  <connection-url>jdbc:postgresql://productsdb:5432/RHMart</connection-url>
+    <connection-url>jdbc:postgresql://productsdb:5432/RHMart</connection-url>
+ <!-- <connection-url>jdbc:postgresql://localhost:5432/RHMart</connection-url>-->
   <driver>postgresql</driver>
   <pool></pool>
   <security>
    <user-name>admin</user-name>
    <password>password</password>
+   <!--  <user-name>postgres</user-name>
+   <password>postgres</password>-->
   </security>
  </datasource>
 </datasources>
