@@ -25,7 +25,7 @@ public class ProductServices {
 	@Inject
 	ProductDao productDAO;
 	
-	@Path("/product")
+	@Path("/products")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public String getAllProducts(){
