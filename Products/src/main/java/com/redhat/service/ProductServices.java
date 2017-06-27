@@ -12,14 +12,11 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-
-import com.google.gson.Gson;
 import com.redhat.model.JsonResponse;
 import com.redhat.model.Product;
 import com.redhat.model.ProductDao;
 
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 
 
 @Path("/services")
@@ -33,7 +30,6 @@ public class ProductServices {
 	@Path("/products")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-
 	public List<Product> getAllProducts(){
          List<Product> prod= productDAO.getAll();
         return prod;

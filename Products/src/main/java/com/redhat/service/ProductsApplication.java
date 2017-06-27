@@ -17,6 +17,7 @@ public class ProductsApplication extends Application {
 	        beanConfig.setScan(true);
 	        beanConfig.setTitle("Products");
 	        beanConfig.setDescription("RHMart's Products API");
+	        beanConfig.setPrettyPrint(true);
 	}
 	
 }
