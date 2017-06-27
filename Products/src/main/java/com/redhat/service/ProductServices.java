@@ -17,6 +17,7 @@ import com.redhat.model.Product;
 import com.redhat.model.ProductDao;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 
 @Path("/services")
@@ -27,6 +28,7 @@ public class ProductServices {
 	@Inject
 	ProductDao productDAO;
 	
+	@ApiOperation(value="Get all Products")
 	@Path("/products")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
@@ -36,7 +38,7 @@ public class ProductServices {
 		
 	}
 	
-	
+	@ApiOperation(value="Get a Product by ID")
 	@Path("/product/{productId}")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
@@ -45,6 +47,7 @@ public class ProductServices {
 		
 	}
 	
+	@ApiOperation(value="Create a new Product")
 	@Path("/product")
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -59,6 +62,7 @@ public class ProductServices {
 		return jr;
 	}
 	
+	@ApiOperation(value="Delete a Product by ID")
 	@Path("/product/{productId}")
 	@DELETE
 	@Produces(MediaType.APPLICATION_JSON)
