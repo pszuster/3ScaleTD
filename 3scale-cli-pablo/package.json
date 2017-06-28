@@ -22,6 +22,7 @@
   "dependencies": {
     "3scale-lambda": "^1.0.0",
     "async": "^1.4.2",
+    "body-parser": "1.17.2",
     "colors": "^0.6.2",
     "commander": "^2.2.0",
     "delay-promise": "^2.1.0",
