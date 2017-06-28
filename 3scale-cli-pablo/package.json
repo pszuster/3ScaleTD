@@ -1,26 +1,21 @@
 {
   "name": "node-3scale-cli-pablo",
-  "description": "A command line interface for 3scale API management",
+  "description": "3Scale API Import",
   "version": "0.10.1",
   "main": "server.js",
   "author": {
-    "name": "picsoung",
-    "email": "picsoung@users.noreply.github.com"
+    "name": "pszuster"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:3scale/3scale-cli.git"
-  },
-  "bugs": {
-    "url": "https://github.com/3scale/3scale-cli/issues"
+    "url": "git@github.com:pszuster/3scaleTD.git"
   },
   "licenses": [
     {
       "type": "MIT"
     }
   ],
-  "preferGlobal": true
-  },
+  "preferGlobal": true,
   "engines": {
     "node": ">= 0.8.0"
   },
@@ -45,7 +40,7 @@
     "underscore": "*"
   },
     "scripts": {
-    "start": "node server.js"
+    	"start": "node server.js"
     },
   "keywords": [],
   "devDependencies": {}
