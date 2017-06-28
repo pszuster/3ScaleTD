@@ -2,6 +2,8 @@ var express = require('express'),
     app     = express(),
     bodyParser = require('body-parser'),
     config = require("./lib/config"),
+    http = require('http'),
+    fs = require('fs'),
     swagger = require("./lib/swagger");
 
 app.engine('html', require('ejs').renderFile);
@@ -14,11 +16,14 @@ app.get('/', function (req, res) {
 });
 app.post('/import', function(req,res){
 
-	console.log("Received: " + req.body.access_token);
+ 	var swagger_file = fs.createWriteStream("swagger.json");
+	var request = http.get(req.body.swagger_file, function(response) {
+  		response.pipe(swagger_file);
+	});	
 	config.add("threescale:access_token",req.body.access_token);
 	config.add("threescale:id",req.body.threescale_id);
 	config.add("threescale:wildcard",req.body.wildcard_domain);
- swagger.import(req.body.swagger_file, null, null, null);
+	 swagger.import("swagger.json", null, null, null);
 });
 
 app.listen(port, ip);
