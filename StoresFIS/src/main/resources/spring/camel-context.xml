@@ -22,20 +22,23 @@
         <rest path="/">
             <post consumes="application/json"
                 outType="com.redhat.service.CreateStoreResponse"
-                type="com.redhat.service.CreateStore" uri="/store">
+                type="com.redhat.service.CreateStore" uri="store">
                 <to uri="direct:createStore"/>
             </post>
             <delete outType="com.redhat.service.DeleteStoreResponse"
-                type="com.redhat.service.DeleteStore" uri="/store/{storeID}">
+                type="com.redhat.service.DeleteStore" uri="store/{storeID}">
                 <to uri="direct:deleteStore"/>
             </delete>
-            <get bindingMode="json" outType="com.redhat.service.GetStoreResponse"
+            <get bindingMode="json"
+                outType="com.redhat.service.GetStoreResponse"
                 produces="application/json"
-                type="com.redhat.service.GetStore" uri="/store/{storeID}">
+                type="com.redhat.service.GetStore" uri="store/{storeID}">
                 <to uri="direct:getStore"/>
             </get>
-            <get outType="com.redhat.service.StoresType" produces="application/json" bindingMode="json" 
-                type="com.redhat.service.GetAllStores" uri="/allstores/">
+            <get bindingMode="json"
+                outType="com.redhat.service.StoresType"
+                produces="application/json"
+                type="com.redhat.service.GetAllStores" uri="allstores">
                 <to uri="direct:getAllStores"/>
             </get>
         </rest>
@@ -82,9 +85,9 @@
         <route id="soapRoute">
             <from id="_from5" uri="direct:soap"/>
             <camel:toD id="tod" uri="cxf:bean:wsStores?defaultOperationName=${header.soapMethod}&amp;exchangePattern=InOut"/>
-                       <setBody id="_setBodySoap">
+            <setBody id="_setBodySoap">
                 <simple>${body[0]}</simple>
-            </setBody> 
+            </setBody>
             <setHeader headerName="Content-Type" id="_setHeaderContextType">
                 <constant>application/json</constant>
             </setHeader>
