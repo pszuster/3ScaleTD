@@ -10,7 +10,7 @@ app.get('/', function (req, res) {
 });
 app.post('/import', function(req,res){
 
-	console.log("Received: " + req);
+	console.log("Received: " + req.body);
  swagger.import(options.file, options.service, options.appplan, options.pattern);
 });
 
