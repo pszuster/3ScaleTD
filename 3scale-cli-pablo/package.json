@@ -2,7 +2,7 @@
   "name": "node-3scale-cli-pablo",
   "description": "A command line interface for 3scale API management",
   "version": "0.10.1",
-  "main": "index.js",
+  "main": "server.js",
   "author": {
     "name": "picsoung",
     "email": "picsoung@users.noreply.github.com"
@@ -19,9 +19,7 @@
       "type": "MIT"
     }
   ],
-  "preferGlobal": true,
-  "bin": {
-    "3scale-cli": "./bin/3scale-cli"
+  "preferGlobal": true
   },
   "engines": {
     "node": ">= 0.8.0"
@@ -46,6 +44,9 @@
     "swagger-parser": "^3.0.0",
     "underscore": "*"
   },
+    "scripts": {
+    "start": "node server.js"
+    },
   "keywords": [],
   "devDependencies": {}
 }
