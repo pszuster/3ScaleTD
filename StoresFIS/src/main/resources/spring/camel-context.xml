@@ -27,26 +27,26 @@
             <post consumes="application/json"
                 outType="com.redhat.service.CreateStoreResponse"
                 type="com.redhat.service.CreateStore" uri="store">
-                <param name="user_key" type="query" required="true"/>
+                <param name="user_key" type="query" required="true" dataType="string"/>
                 <to uri="direct:createStore"/>
             </post>
             <delete outType="com.redhat.service.DeleteStoreResponse"
                 type="com.redhat.service.DeleteStore" uri="store/{storeID}">
-                <param name="user_key" type="query" required="true"/>
+                <param name="user_key" type="query" required="true" dataType="string"/>
                 <to uri="direct:deleteStore"/>
             </delete>
             <get bindingMode="json"
                 outType="com.redhat.service.GetStoreResponse"
                 produces="application/json"
                 type="com.redhat.service.GetStore" uri="store/{storeID}">
-                <param name="user_key" type="query" required="true"/>
+                <param name="user_key" type="query" required="true" dataType="string"/>
                 <to uri="direct:getStore"/>
             </get>
             <get bindingMode="json"
                 outType="com.redhat.service.StoresType"
                 produces="application/json"
                 type="com.redhat.service.GetAllStores" uri="allstores">
-                <param name="user_key" type="query" required="true"/>
+                <param name="user_key" type="query" required="true" dataType="string"/>
                 <to uri="direct:getAllStores"/>
             </get>
         </rest>
