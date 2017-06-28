@@ -39,7 +39,7 @@
     "raml-1-parser": "*",
     "request": "^2.60.0",
     "slug": "^0.9.1",
-    "swagger-parser": "^3.0.0",
+    "swagger-parser": "^3.3.0",
     "underscore": "*"
   },
     "scripts": {
