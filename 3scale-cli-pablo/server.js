@@ -13,7 +13,7 @@ app.get('/', function (req, res) {
 });
 app.post('/import', function(req,res){
 
-	console.log("Received: " + req.body);
+	console.log("Received: " + req.body.access_token);
  swagger.import(options.file, options.service, options.appplan, options.pattern);
 });
 
