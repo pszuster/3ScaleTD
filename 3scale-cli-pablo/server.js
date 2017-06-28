@@ -1,6 +1,6 @@
 var express = require('express'),
     app     = express(),
-    swagger = require("../lib/swagger");
+    swagger = require("lib/swagger");
 
 app.engine('html', require('ejs').renderFile);
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
