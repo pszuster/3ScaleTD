@@ -6,12 +6,12 @@
   <title>3Scale Import</title>
 </head>
 <body>
-	<form action="/import">
+	<form action="/import" method="POST">
 		Access Token: <input type="text" name="access_token"/><br>
 		3Scale ID: <input type="text" name="threescale_id"/><br>
 		Wildcard Domain: <input type="text" name="wildcard_domain"/><br>
 		Swagger file URL: <input type="text" name="swagger_file"/><br>
-		<input type="submit"/>
+		<input type="submit" value="Import API"/>
 	</form>
 </body>
 </html>
