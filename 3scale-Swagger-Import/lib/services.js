@@ -8,13 +8,13 @@ var HttpError = require('http-error-constructor');
 
 exports.createService = function(name){
     var url = config.API+"/services.json";
-  var n = name+Math.floor((Math.random() * 50) + 10);
+	#var n = name+Math.floor((Math.random() * 50) + 10);
 	var options ={
       method:'POST',
       uri: url,
       form:{
         "access_token": config.get("threescale:access_token"),
-        "name": n, //TODO get rid of random
+        "name": name, //TODO get rid of random
         "system_name": slug(n,"_")
       },
       rejectUnauthorized: false,
