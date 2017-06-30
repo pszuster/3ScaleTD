@@ -6,7 +6,7 @@ var Q = require("q");
 var request = Q.denodeify(require("request"));
 var HttpError = require('http-error-constructor');
 
-exports.createService = function(name){
+exports.createService = function(name,resw){
     var url = config.API+"/services.json";
     var n = name+Math.floor((Math.random() * 50) + 10);
     var options ={
@@ -17,8 +17,8 @@ exports.createService = function(name){
         "name": n, //TODO get rid of random
         "system_name": slug(n,"_")
       },
-rejectUnauthorized: false,
-	    timeout:10000
+      rejectUnauthorized: false,
+      timeout:10000
     };
     var response = request(options);
 
@@ -48,7 +48,6 @@ rejectUnauthorized: false,
 
 exports.listServices = function (){
   var url = config.API+"/services.json?access_token=" + config.access_token;
-//  url = "http://www.google.com";
   var options ={
     method:'GET',
     uri: url,
@@ -60,7 +59,6 @@ exports.listServices = function (){
   };
 
   var response = request(options);
-  //console.log("FIN REQ: " + url);
 	return response.then(function (r) {
     var res  = r[0].req.res;
     var body = JSON.parse(res.body);

@@ -47,7 +47,7 @@ exports.createActiveDocs = function(file){
         "access_token": config.access_token,
         "name": api.info.title+n,
         "system_name": slug(api.info.title+n),
-        "body": JSON.stringify(api),
+        "body": JSON.stringify(api,null,4),
         "description": api.info.description || "Activedocs file description",
         "published": true,
         "skip_swagger_validations": false
@@ -58,7 +58,7 @@ exports.createActiveDocs = function(file){
     var response = request(options);
     return response.then(function (r) {
 	var res  = r[0].req.res;
-      var body = JSON.parse(r[0].body);
+	    var body = JSON.parse(r[0].body);
 	    if (res.statusCode >= 300) {
         cli.error({message:"ERROR encountered: " + JSON.stringify(body.error || body.status)});
         throw new Error("Server responded with status code " + r[0].statusCode + " "+JSON.stringify(body.error || body.status));

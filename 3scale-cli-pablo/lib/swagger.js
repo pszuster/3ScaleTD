@@ -23,11 +23,12 @@ var METHODS = []
 
 var PROMISE_DELAY = 1000 //in ms
 
-exports.import = function(path, service_id, appplan_name, method_pattern){
+exports.import = function(path, service_id, appplan_name, method_pattern,res){
   parrser.parse(path, function(err,api){
     if(err){
       	console.log(err);
-	    cli.print({message: "ERROR: "+err.message,type:"error"});
+	res.write("<p class=\"bg-danger\">" + err.message +  "</p>");
+	res.end();
     }
     if(api){ //swagger valid file
       var title = api.info.title+Math.floor((Math.random() * 50) + 10);
@@ -35,18 +36,20 @@ exports.import = function(path, service_id, appplan_name, method_pattern){
         console.log("Update existing service");
 	  threescale_waterfall(api, service_id,appplan_name,method_pattern);
       }else{
-        var ser = services.createService(title).then(function(service){
-          cli.print({message: "Service with id "+ service.id+" created on 3scale"});
-          threescale_waterfall(api, service.id, appplan_name,method_pattern);
+        var ser = services.createService(title,res).then(function(service){
+          console.log("Service with id "+ service.id+" created on 3scale");
+          res.write("<p class=\"bg-success\">Service with id "+ service.id+" created on 3scale" + "</p>"); 
+	threescale_waterfall(api, service.id, appplan_name,method_pattern,res);
 	activedocs.createActiveDocs(path);
        });
      }
-      cli.print({message: "Loading "+title+" swagger definition."});
+      cli.print({message: "Loading "+title+" swagger definition."});  
+      res.write("<p class=\"bg-success\">Loading "+title+" swagger definition.");
     }
   });
 };
 
-var  threescale_waterfall= function(api, service_id, appplan_name,method_pattern){
+var  threescale_waterfall= function(api, service_id, appplan_name,method_pattern,res){
 /*  appplan.createAppPlan(service_id,appplan_name).then(function(plan){
    var application_plan_id = plan.application_plan.id;
      cli.print({message: "Application plan with id "+ application_plan_id+" created on 3scale"});
@@ -55,7 +58,8 @@ var  threescale_waterfall= function(api, service_id, appplan_name,method_pattern
   metrics.getHitsMetric(service_id)
   .then(function(hit_metric){
     cli.print({message: "Hits metric with id "+ hit_metric.id+" found on 3scale"});
-    HIT_METRIC_ID = hit_metric.id;
+    res.write("<p class=\"bg-success\">Hits metric with id "+ hit_metric.id+" found on 3scale"+ "</p>");
+	  HIT_METRIC_ID = hit_metric.id;
   })
   .then(function(){
     return extractMethodsFromSwagger(api,method_pattern)
@@ -91,7 +95,9 @@ var  threescale_waterfall= function(api, service_id, appplan_name,method_pattern
     });
   })
   .done(function(){
-    cli.success({message:"Import on 3scale complete"});
+      res.write("<p class=\"bg-success\">Import on 3scale complete</p>");
+	  res.end();
+      cli.success({message:"Import on 3scale complete"});
   })
 };
 
