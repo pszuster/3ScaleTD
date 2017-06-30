@@ -31,7 +31,7 @@ exports.import = function(path, service_id, appplan_name, method_pattern,res){
 	res.end();
     }
     if(api){ //swagger valid file
-      var title = api.info.title+Math.floor((Math.random() * 50) + 10);
+      var title = api.info.title /*+Math.floor((Math.random() * 50) + 10)*/;
       if(service_id){ //update existing service
         console.log("Update existing service");
 	  threescale_waterfall(api, service_id,appplan_name,method_pattern);
