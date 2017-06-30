@@ -25,18 +25,20 @@ var PROMISE_DELAY = 1000 //in ms
 
 exports.import = function(path, service_id, appplan_name, method_pattern){
   parrser.parse(path, function(err,api){
-    if(err)
-      cli.print({message: "ERROR: "+err.message,type:"error"});
-
+    if(err){
+      	console.log(err);
+	    cli.print({message: "ERROR: "+err.message,type:"error"});
+    }
     if(api){ //swagger valid file
       var title = api.info.title+Math.floor((Math.random() * 50) + 10);
       if(service_id){ //update existing service
-        threescale_waterfall(api, service_id,appplan_name,method_pattern);
+        console.log("Update existing service");
+	  threescale_waterfall(api, service_id,appplan_name,method_pattern);
       }else{
         var ser = services.createService(title).then(function(service){
           cli.print({message: "Service with id "+ service.id+" created on 3scale"});
           threescale_waterfall(api, service.id, appplan_name,method_pattern);
-	  activedocs.createActiveDocs(path);
+	activedocs.createActiveDocs(path);
        });
      }
       cli.print({message: "Loading "+title+" swagger definition."});
@@ -45,11 +47,11 @@ exports.import = function(path, service_id, appplan_name, method_pattern){
 };
 
 var  threescale_waterfall= function(api, service_id, appplan_name,method_pattern){
-  // appplan.createAppPlan(service_id,appplan_name).then(function(plan){
-  //   var application_plan_id = plan.application_plan.id;
-  //   cli.print({message: "Application plan with id "+ application_plan_id+" created on 3scale"});
-  // }).then(function(){
-
+/*  appplan.createAppPlan(service_id,appplan_name).then(function(plan){
+   var application_plan_id = plan.application_plan.id;
+     cli.print({message: "Application plan with id "+ application_plan_id+" created on 3scale"});
+  }).then(function(){
+*/
   metrics.getHitsMetric(service_id)
   .then(function(hit_metric){
     cli.print({message: "Hits metric with id "+ hit_metric.id+" found on 3scale"});
@@ -98,7 +100,9 @@ var extractMethodsFromSwagger = function (api,method_pattern){
      for (var e in api.paths){
        for(var m in api.paths[e]){ //methods
          var method = api.paths[e][m];
-         method.path = api.basePath+e;
+         if(!api.basePath)
+		       api.basePath="";
+	 method.path = api.basePath+e;
          method.method = m;
          if(method_pattern){
            method.friendly_name = method_pattern.replace(/{method}/g,method.method.toUpperCase()).replace(/{path}/g,method.path);

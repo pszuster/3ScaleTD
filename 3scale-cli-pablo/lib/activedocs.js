@@ -15,7 +15,8 @@ exports.listActiveDocs = function(){
     url: url,
     form:{
       "access_token": config.access_token
-    }
+    },
+	  rejectUnauthorized: false
   };
 
   var response = request(options);
@@ -37,10 +38,10 @@ exports.createActiveDocs = function(file){
   //Parse swagger file and extract info from it
   return SwaggerParser.parse(file)
   .then(function(api){
-    var n = Math.floor((Math.random() * 50) + 10)
+   var n = Math.floor((Math.random() * 50) + 10)
     var options ={
       method: 'POST',
-      url: url,
+      uri: url,
       form:{
         "access_token": config.access_token,
         "name": api.info.title+n,
@@ -49,14 +50,16 @@ exports.createActiveDocs = function(file){
         "description": api.info.description || "Activedocs file description",
         "published": true,
         "skip_swagger_validations": false
-      }
+      },
+	    rejectUnauthorized: false
     };
 
     var response = request(options);
     return response.then(function (r) {
-      var res  = r[0].req.res;
+	var res  = r[0].req.res;
       var body = JSON.parse(r[0].body);
-      if (res.statusCode >= 300) {
+       console.log("BODY: " + r[0].body);
+	    if (res.statusCode >= 300) {
         cli.error({message:"ERROR encountered: " + JSON.stringify(body.error || body.status)});
         throw new Error("Server responded with status code " + r[0].statusCode + " "+JSON.stringify(body.error || body.status));
       } else {
@@ -76,13 +79,14 @@ exports.updateActiveDocs = function(file, id){
   .then(function(api){
     var options ={
       method: 'PUT',
-      url: url,
+      uri: url,
       form:{
         "access_token": config.access_token,
         "id": id,
         "body": JSON.stringify(api),
         "description": api.info.description || "Activedocs file description",
-      }
+      },
+	    rejectUnauthorized: false
     };
 
     var response = request(options);
@@ -104,10 +108,11 @@ exports.deleteActiveDocs = function(activedocs_id){
 
   var options ={
     method: 'DELETE',
-    url: url,
+    uri: url,
     form:{
       "access_token": config.access_token
-    }
+    },
+	 rejectUnauthorized: false
   };
 
   var response = request(options);

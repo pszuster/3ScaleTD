@@ -9,7 +9,7 @@ exports.createMappingRule= function(service_id, http_method, pattern, delta, met
 
   var options ={
     method: 'POST',
-    url: url,
+    uri: url,
     form:{
       "access_token": config.access_token,
       "service_id": service_id,
@@ -17,13 +17,14 @@ exports.createMappingRule= function(service_id, http_method, pattern, delta, met
       "pattern": pattern,
       "delta": delta,
       "metric_id": metric_id
-    }
+    },
+	  rejectUnauthorized: false
   };
-
   var response = request(options);
   return response.then(function (r) {
     var res  = r[0].req.res;
     var body = JSON.parse(r[0].body);
+  console.log(body);
     if (res.statusCode >= 300) {
       cli.error({message:"ERROR encountered on creating Mapping rule: " + JSON.stringify(body.error)});
       throw new Error("Server responded with status code " + r[0].statusCode + " "+JSON.stringify(body.error));
@@ -43,7 +44,8 @@ exports.updateMappingRule= function(service_id, mapping_rule_id, http_method, pa
       "access_token": config.access_token,
       "service_id": service_id,
       "id":mapping_rule_id
-    }
+    },
+	  rejectUnauthorized: false
   };
 
   if(http_method)
@@ -75,7 +77,8 @@ exports.getMappingRule= function(service_id, mapping_rule_id){
     url: url,
     form:{
       "access_token": config.access_token
-    }
+    },
+	  rejectUnauthorized: false
   };
 
   var response = request(options);
@@ -100,7 +103,8 @@ exports.listMappingRules= function(service_id){
     form:{
       "access_token": config.access_token,
       "service_id": service_id,
-    }
+    },
+	  rejectUnauthorized: false
   };
 
   var response = request(options);
@@ -123,7 +127,8 @@ exports.deleteMappingRule= function(service_id, mapping_rule_id){
     url: url,
     form:{
       "access_token": config.access_token
-    }
+    },
+	  rejectUnauthorized: false
   };
 
   // var response = request(options);

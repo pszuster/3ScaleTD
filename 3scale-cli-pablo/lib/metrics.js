@@ -6,15 +6,15 @@ var request = Q.denodeify(require("request"));
 var _ = require("underscore")
 
 exports.listMetrics = function(service_id){
-  var url = config.API+"/services/"+service_id+"/metrics.json";
-  // console.log(url);
+  var url = config.API+"/services/"+service_id+"/metrics.json?access_token=" + config.access_token + "&service_id=" + service_id;
   var options ={
     method:'GET',
-    url: url,
+    uri: url ,/*
     form:{
       "access_token": config.access_token,
       "service_id":service_id,
-    }
+    }*/
+  rejectUnauthorized: false
   };
     var response = request(options);
 
@@ -34,14 +34,15 @@ exports.createMetric = function(service_id,friendly_name,unit){
   var url = config.API+"/services/"+service_id+"/metrics.json";
 
   var options = {
-    url: url,
+    uri: url,
     method: 'POST',
     form:{
       "access_token": config.access_token,
       "service_id":service_id,
       "friendly_name": friendly_name,
       "unit": unit || "hit"
-    }
+    },
+	  rejectUnauthorized: false
   };
   var response = request(options);
 
@@ -65,7 +66,8 @@ exports.getMetricById = function (service_id, metric_id){
     method: 'GET',
     form:{
       "access_token": config.access_token
-    }
+    },
+	  rejectUnauthorized: false
   };
   var response = request(options);
 
@@ -91,7 +93,8 @@ exports.updateMetric = function(service_id, metric_id, friendly_name, unit){
       "access_token": config.access_token,
       "service_id":service_id,
       "id": metric_id,
-    }
+    },
+	  rejectUnauthorized: false
   };
 
   if(friendly_name)
@@ -120,7 +123,8 @@ exports.deleteMetric = function(service_id, metric_id){
     method: 'DELETE',
     form:{
       "access_token": config.access_token
-    }
+    },
+	  rejectUnauthorized: false
   };
 
   var response = request(options);

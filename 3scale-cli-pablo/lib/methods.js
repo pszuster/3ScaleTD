@@ -18,7 +18,8 @@ exports.createMethod = function(service_id,metric_id,friendly_name, unit){
       "friendly_name": friendly_name || "default_method",
       "system_name": slug(friendly_name) || "default_method",
       "unit": 1 || unit
-    }
+    },
+	  rejectUnauthorized: false
   };
 
   var response = request(options);
@@ -42,7 +43,8 @@ exports.listMethods = function(service_id, metric_id){
     url: url,
     form:{
       "access_token": config.access_token
-    }
+    },
+	  rejectUnauthorized: false
   };
 
   var response = request(options);
@@ -66,7 +68,8 @@ exports.getMethodById = function(service_id, metric_id, method_id){
     url: url,
     form:{
       "access_token": config.access_token
-    }
+    },
+	  rejectUnauthorized: false
   };
 
   var response = request(options);
@@ -93,7 +96,8 @@ exports.updateMethod = function(service_id, metric_id, method_id, friendly_name,
       "service_id": service_id,
       "metric_id": metric_id,
       "id": method_id
-    }
+    },
+	  rejectUnauthorized: false
   };
 
   if(friendly_name)
@@ -122,7 +126,8 @@ exports.deleteMethod = function(service_id, metric_id, method_id){
       url: url,
       form:{
         "access_token": config.access_token,
-      }
+      },
+	    rejectUnauthorized: false
     };
 
     var response = request(options);

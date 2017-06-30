@@ -4,27 +4,40 @@ var cli = require("./3scale-cli");
 var slug = require("slug");
 var Q = require("q");
 var request = Q.denodeify(require("request"));
+var HttpError = require('http-error-constructor');
 
 exports.createService = function(name){
     var url = config.API+"/services.json";
-    var n = name+Math.floor((Math.random() * 50) + 10)
+    var n = name+Math.floor((Math.random() * 50) + 10);
     var options ={
       method:'POST',
-      url: url,
+      uri: url,
       form:{
         "access_token": config.access_token,
         "name": n, //TODO get rid of random
         "system_name": slug(n,"_")
-      }
+      },
+rejectUnauthorized: false,
+	    timeout:10000
     };
     var response = request(options);
 
     return response.then(function (r) {
-      var res  = r[0].req.res;
-      var body = JSON.parse(res.body);
+     var res  = r[0].req.res;
+     try {
+       var body = JSON.parse(res.body);
+     } catch(e) {
+     }
       if (res.statusCode >= 300) {
-        cli.error({message:"ERROR encountered: " + body.error});
-        throw new Error("Server responded with status code " + res[0].req.res.statusCode,body.error);
+        var err = new HttpError(res.statusCode)
+        var message = "ERROR encountered: "
+        if(body && body.error){ //error message in body
+          message += body.error
+        }else{
+          message += "["+res.statusCode+"] "+err.message
+        }
+        cli.error({message: message});
+        throw new Error("Server responded with status code " + res.statusCode);
       } else {
         config.add("threescale:service_id",body.service.id);
         return body.service;//assuming tapes are strings and not binary data
@@ -34,27 +47,31 @@ exports.createService = function(name){
 };
 
 exports.listServices = function (){
-var url = config.API+"/services.json";
-  //cli.print({message:"URL: " + url +"\n\r access_token:" + config.access_token});
+  var url = config.API+"/services.json?access_token=" + config.access_token;
+//  url = "http://www.google.com";
   var options ={
     method:'GET',
-    url: url,
-    form:{
+    uri: url,
+    /*form:{
       "access_token": config.access_token
-    }
+    },*/
+    rejectUnauthorized: false,
+	  timeout:10000
   };
+
   var response = request(options);
-  //cli.print({message: "hola",data: response});
-  return response.then(function (r) {
-	 var res  = r[0].req.res;
+  //console.log("FIN REQ: " + url);
+	return response.then(function (r) {
+    var res  = r[0].req.res;
     var body = JSON.parse(res.body);
     if (res.statusCode >= 300) {
       cli.error({message:"ERROR encountered: " + JSON.stringify(body.error || body.status)});
       throw new Error("Server responded with status code " + r[0].statusCode + " "+JSON.stringify(body.error || body.status));
     } else {
-      return body.services;
+      		console.log(body.services);
+	    return body.services;
     }
-  });
+  }).catch(function(err){console.log(err);});
 }
 
 exports.getServiceByID = function(service_id){
@@ -65,7 +82,8 @@ exports.getServiceByID = function(service_id){
     form:{
       "access_token": config.access_token,
       "id": service_id
-    }
+    },
+	  rejectUnauthorized: false
   };
   var response = request(options);
   return response.then(function (r) {
@@ -88,7 +106,8 @@ exports.updateService = function(service_id, name){
     form:{
       "access_token": config.access_token,
       "id": service_id,
-    }
+    },
+	  rejectUnauthorized: false
   };
 
   if(name)
