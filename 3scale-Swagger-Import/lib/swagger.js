@@ -36,7 +36,8 @@ exports.import = function(path, service_id, appplan_name, method_pattern,res){
         console.log("Update existing service");
 	  threescale_waterfall(api, service_id,appplan_name,method_pattern);
       }else{
-        var ser = services.createService(title).then(function(service){
+       console.log("SERVICE API :" + config.API); 
+	      var ser = services.createService(title).then(function(service){
           console.log("Service with id "+ service.id+" created on 3scale");
           res.write("<p class=\"bg-success\">Service with id "+ service.id+" created on 3scale" + "</p>"); 
 	threescale_waterfall(api, service.id, appplan_name,method_pattern,res);
