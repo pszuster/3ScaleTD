@@ -18,6 +18,7 @@ oc delete project myproject
 oc set env dc/router ROUTER_ALLOW_WILDCARD_ROUTES=true -n default
 oc project openshift
 oc create -f https://raw.githubusercontent.com/jboss-openshift/application-templates/master/jboss-image-streams.json
+oc create -f https://raw.githubusercontent.com/openshift/origin/master/examples/image-streams/image-streams-rhel7.json
 oc create -f https://raw.githubusercontent.com/jboss-openshift/application-templates/master/amq/amq62-basic.json
 oc create -f https://raw.githubusercontent.com/jboss-openshift/application-templates/master/datavirt/datavirt63-basic-s2i.json
 oc create -f https://raw.githubusercontent.com/jboss-openshift/application-templates/master/eap/eap70-basic-s2i.json
@@ -29,6 +30,7 @@ oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/template
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/stores-api.json
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/stores-fis.json
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/sso71-https.json
+oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/swagger-import.json
 chcat -d /root/.oc/profiles/threescale/volumes/vol{01..10}
 oc new-project products-api --display-name='Products API'
 oc adm policy add-scc-to-user anyuid system:serviceaccount:products-api:default
@@ -54,3 +56,5 @@ oc policy add-role-to-user view system:serviceaccount:stock-api:datavirt-service
 oc secret link datavirt-service-account datavirt-app-config
 oc adm policy add-scc-to-user anyuid system:serviceaccount:stock-api:default
 oc new-app --template=stock-api
+oc new-project swagger-import --display-name='Swagger Import Tool'
+oc new-app --tempalte=threescale-swagger-importer --param APPLICATION_DOMAIN=swagger-import.$threescaleDomain
