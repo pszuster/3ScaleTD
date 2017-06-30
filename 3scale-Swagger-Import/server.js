@@ -25,7 +25,7 @@ app.post('/import', function(req,res){
 		
 		config.add("threescale:access_token",req.body.access_token);
  	        console.log("TOKEN: " + req.body.access_token);
-		console.log("TOKEN CONFIG: " + config.access_token);
+		console.log("TOKEN CONFIG: " + config.get("threescale:access_token"));
 		config.add("threescale:id",req.body.threescale_id);
 		console.log("ID: " + req.body.threescale_id);
         	config.add("threescale:wildcard",req.body.wildcard_domain);
