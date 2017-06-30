@@ -38,7 +38,8 @@ exports.createActiveDocs = function(file){
   //Parse swagger file and extract info from it
   return SwaggerParser.parse(file)
   .then(function(api){
-   var n = Math.floor((Math.random() * 50) + 10)
+   var n = Math.floor((Math.random() * 50) + 10);
+	  console.log("API Stringify: " + JSON.stringify(api,null,4));
    api.host = 'CHANGEME';
 	  var options ={
       method: 'POST',
