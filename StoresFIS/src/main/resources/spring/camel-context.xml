@@ -38,7 +38,7 @@
             <get bindingMode="json"
                 outType="com.redhat.service.GetStoreResponse"
                 produces="application/json"
-                type="com.redhat.service.GetStore" uri="store/{storeID}">
+                uri="store/{storeID}">
                 <param dataType="string" name="user_key" required="true" type="query"/>
                 <to uri="direct:getStore"/>
             </get>
