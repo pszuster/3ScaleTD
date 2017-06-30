@@ -31,7 +31,7 @@
                 <to uri="direct:createStore"/>
             </post>
             <delete outType="com.redhat.service.DeleteStoreResponse"
-                type="com.redhat.service.DeleteStore" uri="store/{storeID}">
+                 uri="store/{storeID}">
                 <param dataType="string" name="user_key" required="true" type="query"/>
                 <to uri="direct:deleteStore"/>
             </delete>
