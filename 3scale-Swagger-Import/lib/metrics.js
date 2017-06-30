@@ -6,7 +6,7 @@ var request = Q.denodeify(require("request"));
 var _ = require("underscore")
 
 exports.listMetrics = function(service_id){
-  var url = config.API+"/services/"+service_id+"/metrics.json?access_token=" + config.access_token + "&service_id=" + service_id;
+  var url = config.API+"/services/"+service_id+"/metrics.json?access_token=" + config.get("threescale:access_token") + "&service_id=" + service_id;
   var options ={
     method:'GET',
     uri: url ,/*
@@ -37,7 +37,7 @@ exports.createMetric = function(service_id,friendly_name,unit){
     uri: url,
     method: 'POST',
     form:{
-      "access_token": config.access_token,
+      "access_token": config.get("threescale:access_token"),
       "service_id":service_id,
       "friendly_name": friendly_name,
       "unit": unit || "hit"

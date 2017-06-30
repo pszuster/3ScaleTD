@@ -12,7 +12,7 @@ exports.createMethod = function(service_id,metric_id,friendly_name, unit){
     method: 'POST',
     url: url,
     form:{
-      "access_token": config.access_token,
+      "access_token": config.get("threescale:access_token"),
       "service_id": service_id,
       "metric_id": metric_id,
       "friendly_name": friendly_name || "default_method",

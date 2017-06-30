@@ -11,7 +11,7 @@ exports.createMappingRule= function(service_id, http_method, pattern, delta, met
     method: 'POST',
     uri: url,
     form:{
-      "access_token": config.access_token,
+      "access_token": config.get("threescale:access_token"),
       "service_id": service_id,
       "http_method": http_method,
       "pattern": pattern,

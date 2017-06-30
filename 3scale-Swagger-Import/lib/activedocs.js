@@ -45,7 +45,7 @@ exports.createActiveDocs = function(file){
       method: 'POST',
       uri: url,
       form:{
-        "access_token": config.access_token,
+        "access_token": config.get("threescale:access_token"),
         "name": api.info.title+n,
         "system_name": slug(api.info.title+n),
         "body": JSON.stringify(api,null,4),
