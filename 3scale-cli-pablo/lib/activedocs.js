@@ -39,7 +39,8 @@ exports.createActiveDocs = function(file){
   return SwaggerParser.parse(file)
   .then(function(api){
    var n = Math.floor((Math.random() * 50) + 10)
-    var options ={
+   api.host = 'CHANGEME';
+	  var options ={
       method: 'POST',
       uri: url,
       form:{
@@ -58,7 +59,6 @@ exports.createActiveDocs = function(file){
     return response.then(function (r) {
 	var res  = r[0].req.res;
       var body = JSON.parse(r[0].body);
-       console.log("BODY: " + r[0].body);
 	    if (res.statusCode >= 300) {
         cli.error({message:"ERROR encountered: " + JSON.stringify(body.error || body.status)});
         throw new Error("Server responded with status code " + r[0].statusCode + " "+JSON.stringify(body.error || body.status));
