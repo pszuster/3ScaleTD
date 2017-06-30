@@ -18,12 +18,12 @@
     </bean>
     <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
         <restConfiguration apiContextPath="/api-docs" bindingMode="auto"
-            component="servlet" enableCORS="true">
+            component="servlet" enableCORS="true" contextPath="/">
             <apiProperty key="api.title" value="Stores API"/>
             <apiProperty key="api.version" value="1.0.0"/>
             <apiProperty key="api.description" value="Create, Delete and Retrieve Stores"/>
         </restConfiguration>
-        <rest path="/">
+        <rest path="">
             <post consumes="application/json"
                 outType="com.redhat.service.CreateStoreResponse"
                 type="com.redhat.service.CreateStore" uri="store">
