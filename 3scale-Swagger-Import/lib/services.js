@@ -8,9 +8,7 @@ var HttpError = require('http-error-constructor');
 
 exports.createService = function(name){
     var url = config.API+"/services.json";
-  console.log("API: " + config.API);
   var n = name+Math.floor((Math.random() * 50) + 10);
-    console.log("TOKEN: " + config.access_token);
 	var options ={
       method:'POST',
       uri: url,
