@@ -45,7 +45,7 @@
             <get bindingMode="json"
                 outType="com.redhat.service.StoresType"
                 produces="application/json"
-                type="com.redhat.service.GetAllStores" uri="allstores">
+                 uri="allstores">
                 <param dataType="string" name="user_key" required="true" type="query"/>
                 <to uri="direct:getAllStores"/>
             </get>
