@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "title": "Stock API"
   },
-  "host": "stock-api.3scale1.rhtechofficelatam.com",
+  "host": "stock-apicast-production.gateway.3scale1.rhtechofficelatam.com",
   "basePath": "/odata4/Stock-API/FederatedStock",
   "schemes": [
     "http"
@@ -16,6 +16,12 @@
         "parameters": [
           {
             "name": "$format",
+            "in": "query",
+            "description": "response type",
+            "type": "string"
+          },
+          {
+            "name": "$filter",
             "in": "query",
             "description": "response type",
             "type": "string"
@@ -45,15 +51,5 @@
         }
       }
     }
-  },
-  "securityDefinitions": {
-    "basicAuth": {
-      "type": "basic"
-    }
-  },
-  "security": [
-    {
-      "basicAuth": []
-    }
-  ]
+  }
 }
