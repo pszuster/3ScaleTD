@@ -134,9 +134,7 @@
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:datasources:1.2">
             <datasources>
-                <datasource jta="true" jndi-name="java:jboss/datasources/ExampleDS" pool-name="ExampleDS" enabled="true" use-java-context="true"> <connection-url>jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE</connection-url> <driver>h2</driver> <security> <user-name>sa</user-name> <password>sa</password> </security> </datasource><datasource jta="true" jndi-name="java:/Stock_MySQL_DS" pool-name="stockmysql-StockMySQL" enabled="true" use-java-context="true"> <connection-url>jdbc:mysql://stockmysql:3306/RHMart</connection-url> <driver>mysql</driver> <pool> <min-pool-size>5</min-pool-size> <max-pool-size>10</max-pool-size> </pool> <security> <user-name>admin</user-name> <password>password</password> </security> <validation> <validate-on-match>true</validate-on-match> <valid-connection-checker class-name="org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLValidConnectionChecker"></valid-connection-checker> <exception-sorter class-name="org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLExceptionSorter"></exception-sorter> </validation> </datasource> 
-<xa-datasource jndi-name="java:/StockPG_DS" pool-name="stockpg-StockPG" use-java-context="true" enabled="true"> <xa-datasource-property name="DatabaseName">RHMart</xa-datasource-property> <xa-datasource-property name="PortNumber">5432</xa-datasource-property> <xa-datasource-property name="ServerName">stockpg</xa-datasource-property> <driver>postgresql</driver> <xa-pool> <min-pool-size>5</min-pool-size> <max-pool-size>10</max-pool-size> </xa-pool> <security> <user-name>admin</user-name> <password>password</password> </security> <validation> <validate-on-match>true</validate-on-match> <valid-connection-checker class-name="org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLValidConnectionChecker"></valid-connection-checker> <exception-sorter class-name="org.jboss.jca.adapters.jdbc.extensions.postgres.PostgreSQLExceptionSorter"></exception-sorter> </validation> </xa-datasource> 
-<!-- ##DATASOURCES## -->
+                <datasource jta="true" jndi-name="java:jboss/datasources/ExampleDS" pool-name="ExampleDS" enabled="true" use-java-context="true"> <connection-url>jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE</connection-url> <driver>h2</driver> <security> <user-name>sa</user-name> <password>sa</password> </security> </datasource><!-- ##DATASOURCES## -->
                 <datasource jndi-name="java:/datasources/ModeShapeDS" pool-name="ModeShapeDS" enabled="true" use-java-context="true">
                     <connection-url>jdbc:jcr:jndi:jcr?repositoryName=dv</connection-url>
                     <connection-property name="teiidsupport">
@@ -332,13 +330,7 @@
                 <protocol type="pbcast.NAKACK"/>
                 <protocol type="UNICAST2"/>
                 <protocol type="pbcast.STABLE"/>
-                
-                <protocol type="AUTH">
-                    <property name="auth_class">org.jgroups.auth.MD5Token</property>
-                    <property name="token_hash">SHA</property>
-                    <property name="auth_value">v4edWS18</property>
-                </protocol>
-
+                <!--WARNING: No password defined for JGroups cluster. AUTH protocol has been disabled. Please define JGROUPS_CLUSTER_PASSWORD. -->
                 <protocol type="pbcast.GMS"/>
                 <protocol type="UFC"/>
                 <protocol type="MFC"/>
@@ -356,13 +348,7 @@
                 <protocol type="pbcast.NAKACK"/>
                 <protocol type="UNICAST2"/>
                 <protocol type="pbcast.STABLE"/>
-                
-                <protocol type="AUTH">
-                    <property name="auth_class">org.jgroups.auth.MD5Token</property>
-                    <property name="token_hash">SHA</property>
-                    <property name="auth_value">v4edWS18</property>
-                </protocol>
-
+                <!--WARNING: No password defined for JGroups cluster. AUTH protocol has been disabled. Please define JGROUPS_CLUSTER_PASSWORD. -->
                 <protocol type="pbcast.GMS"/>
                 <protocol type="UFC"/>
                 <protocol type="MFC"/>
@@ -566,13 +552,13 @@
                 <security-domain name="encrypted-modeshape">
                     <authentication>
                         <login-module code="org.picketbox.datasource.security.SecureIdentityLoginModule" flag="required">
-                            <module-option name="username" value="KytIAeTG"/>
-                            <module-option name="password" value="-2ddf22023bb83b80768230908b23fa90"/>
+                            <module-option name="username" value="##MODESHAPE_USERNAME##"/>
+                            <module-option name="password" value="##MODESHAPE_PASSWORD##"/>
                         </login-module>
                     </authentication>
                 </security-domain>
                 <!-- ##KEYCLOAK_SECURITY_DOMAIN## -->
-                <!-- no additional security domains configured --><!-- no additional security domains configured --><!-- ##ADDITIONAL_SECURITY_DOMAINS## -->
+                <!-- no additional security domains configured --><!-- ##ADDITIONAL_SECURITY_DOMAINS## -->
             </security-domains>
         </subsystem>
          <subsystem xmlns="urn:jboss:domain:threads:1.1">
@@ -637,14 +623,14 @@
             <preparedplan-cache infinispan-container="teiid-cache"/>
             <transport name="embedded"/>
             <transport name="odata">
-		    <!-- <authentication security-domain="teiid-security"/>-->
+		    <!--<authentication security-domain="teiid-security"/>-->
             </transport>
             <transport name="jdbc" socket-binding="teiid-jdbc" protocol="teiid">
-		    <!-- <authentication security-domain="teiid-security"/>-->
+	             <!--   <authentication security-domain="teiid-security"/>-->
             </transport>
             <!-- ##TEIID_SECURE_TRANSPORT## -->
             <transport name="odbc" socket-binding="teiid-odbc" protocol="pg">
-		    <!--              <authentication security-domain="teiid-security"/>-->
+		    <!-- <authentication security-domain="teiid-security"/>-->
             </transport>
             <translator name="jdbc-simple" module="org.jboss.teiid.translator.jdbc"/>
             <translator name="jdbc-ansi" module="org.jboss.teiid.translator.jdbc"/>
