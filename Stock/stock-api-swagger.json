@@ -1,0 +1,59 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a Stock API backed by JBoss Data Virtualization",
+    "version": "1.0.0",
+    "title": "Stock API"
+  },
+  "host": "stock-api.3scale1.rhtechofficelatam.com",
+  "basePath": "/odata4/Stock-API/FederatedStock",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/stock": {
+      "get": {
+        "parameters": [
+          {
+            "name": "$format",
+            "in": "query",
+            "description": "response type",
+            "type": "string"
+          },
+          {
+            "name": "user_key",
+            "in": "query",
+            "type": "string",
+            "x-data-threescale-name": "user_keys"
+          }
+        ],
+        "summary": "Stock query",
+        "description": "",
+        "operationId": "query",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Query Result"
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "basicAuth": {
+      "type": "basic"
+    }
+  },
+  "security": [
+    {
+      "basicAuth": []
+    }
+  ]
+}
