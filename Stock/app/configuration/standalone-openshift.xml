@@ -524,13 +524,13 @@
                         <policy-module code="Delegating" flag="required"/>
                     </authorization>
                 </security-domain>
-              <!--  <security-domain name="teiid-security" cache-type="default">
-                    <authentication>
+               <security-domain name="teiid-security" cache-type="default">
+                   <!-- <authentication>
                         <login-module code="RealmDirect" flag="sufficient">
                             <module-option name="password-stacking" value="useFirstPass"/>
                         </login-module>
-                    </authentication>
-                </security-domain>-->
+                    </authentication>-->
+                </security-domain>
                 <security-domain name="modeshape-security">
                     <authentication>
                         <login-module code="RealmDirect" flag="required">
