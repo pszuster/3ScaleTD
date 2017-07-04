@@ -784,6 +784,9 @@ objects:
                 - 
                   name: APICAST_MODULE
                   value: cors.apicast_cors
+                - 
+                  name: RHSSO_ENDPOINT
+                  value: "${RHSSO_ENDPOINT}"
               image: "registry.access.redhat.com/3scale-amp20/apicast-gateway:1.0-3"
               imagePullPolicy: IfNotPresent
               livenessProbe: 
@@ -911,6 +914,10 @@ objects:
                 - 
                   name: APICAST_MODULE
                   value: cors.apicast_cors
+                - 
+                  name: RHSSO_ENDPOINT
+                  value: "${RHSSO_ENDPOINT}"
+
               image: "registry.access.redhat.com/3scale-amp20/apicast-gateway:1.0-3"
               imagePullPolicy: IfNotPresent
               livenessProbe: 
@@ -2352,3 +2359,8 @@ parameters:
     name: APICAST_RESPONSE_CODES
     required: false
     value: "true"
+  - 
+    description: "RH-SSO Endpoint"
+    name: RHSSO_ENDPOINT
+    required: true
+    value: "https://secure-sso.3scale1.rhtechofficelatam.com/auth/realms/3scaleRealm"

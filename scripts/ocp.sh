@@ -31,6 +31,7 @@ oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/template
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/stores-fis.json
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/sso71-https.json
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/swagger-import.json
+oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/benefits.json
 chcat -d /root/.oc/profiles/threescale/volumes/vol{01..10}
 oc new-project products-api --display-name='Products API'
 oc adm policy add-scc-to-user anyuid system:serviceaccount:products-api:default
