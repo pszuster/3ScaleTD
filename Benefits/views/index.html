@@ -1,0 +1,187 @@
+<html>
+<head>
+<meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible"	>
+  <title>RHBank Benefits</title>
+  <meta name="description" content="RHBank Benefits Application">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<script type="text/javascript" src="swagger-client.min.js"></script>
+<script>
+var products;
+var stocks;
+var stores;
+var markers = [];
+var urlProds, urlStock, urlStores;
+var prodsKey,stockKey,storesKey;
+
+$(document).ready(function() {
+	alert("<%= envVars.urlProds %>");
+    jQuery.support.cors = true;
+    $.get("<%= envVars.urlProds %>" + "?user_key=" + "<%= envVars.prodsKey %>",
+    		function(data,status){
+				products=data;
+    			var trHTML = '';
+    			$.each(data,function(i,item){
+    				trHTML += '<tr><td hidden="true" >' +data[i].productid +'</td><td>' + data[i].productname + '</td><td>' + data[i].productprice + '</td></tr>';
+    			});
+    	$('#productsTable').append(trHTML);
+
+    });
+
+    $("#productsTable").on('click','tr',function(event){
+
+        var prodid = products[$(event.currentTarget).index()].productid;
+		document.getElementById("loader").style.display = "block";
+        $.get("<%= envVars.urlStock%>"+"?%24format=JSON&%24filter=productid%20eq%20" + prodid +"&user_key=" + "<%= envVars.stockKey %>",
+                function(data,status){
+					stocks = data.value;
+					stores= new Array();
+					clearMarkers();
+					var trHTML = '';
+					$("#storesTable > tbody").empty(); 
+					for (var stock of stocks){
+						$.get("<%= envVars.urlStores %>"+stock.storeid + "?user_key=" + "<%= envVars.storesKey %>",
+								function(data,status){
+									stores.push(data); 	
+									trHTML = '<tr><td hidden="true">' + data.storeID + '</td><td>' + data.storeName + '</td><td>' + stock.amount + '</td></tr>';
+									var myLatLng = {lat: data.storeLat, lng: data.storeLong};
+									var marker = new google.maps.Marker({
+								          position: myLatLng,
+								          map: map,
+								          title: data.storeName
+								        });
+							        markers.push(marker);
+							        map.setCenter(myLatLng);
+							        map.setZoom(10);
+							        $('#storesTable').append(trHTML);
+																	
+							});
+						};
+						
+						document.getElementById("loader").style.display = "none";
+				  });
+        });
+    
+});
+
+</script>
+<style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 50%;
+      }
+      table {
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+
+/* Center the loader */
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>
+</head>
+
+<body>
+<div id="loader" style="display:none;"></div>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title"><b>RHBank Benefits</b></h3>
+  </div>
+  <div class="panel-body">
+<table>
+<tr>
+<td style="width:50%;" >
+<div class="panel panel-primary">
+<div class="table-responsive">
+   <table class="table table-hover" id ="productsTable">
+    <thead>
+      <tr>
+         <th hidden="true">Product ID</th>
+        <th>Product Name</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+  </table>
+  </div>
+</div>
+</td>
+<td style="width:50%" valign="top">
+<div class="panel panel-primary">
+<div class="table-responsive">
+   <table class="table table-hover" id ="storesTable">
+    <thead>
+      <tr>
+        <th hidden="true">StoreID</th>
+        <th>Store Name</th>
+        <th>Amount Available</th>
+      </tr>
+    </thead>
+  </table>
+  </div>
+</div>
+</td>
+</tr>
+</table>
+<div id="map"></div>
+  </div>
+</div>
+
+    <script>
+	var map;
+      function initMap() {
+        var myLatLng = {lat: -34.6046154, lng: -58.3814137};
+          map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: myLatLng
+        });
+
+        var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map,
+          title: 'Hello World!'
+        });
+        markers.push(marker);
+      }
+      function clearMarkers() {
+    	  for (var i = 0; i < markers.length; i++) {
+              markers[i].setMap(null);
+            }
+          markers = [];
+      }
+      
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJqnHXKL7fTkyR4G2eh-3ER2_v_SkYoIA&callback=initMap">
+    </script>
+    
+ </body>
+
+</html>
