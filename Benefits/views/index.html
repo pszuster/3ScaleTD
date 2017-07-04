@@ -18,7 +18,6 @@ var urlProds, urlStock, urlStores;
 var prodsKey,stockKey,storesKey;
 
 $(document).ready(function() {
-	alert("<%= envVars.urlProds %>");
     jQuery.support.cors = true;
     $.get("<%= envVars.urlProds %>" + "?user_key=" + "<%= envVars.prodsKey %>",
     		function(data,status){
@@ -113,7 +112,7 @@ $(document).ready(function() {
 <div id="loader" style="display:none;"></div>
 <div class="panel panel-primary">
   <div class="panel-heading">
-    <h3 class="panel-title"><b>RHBank Benefits</b></h3>
+    <h3 class="panel-title"><table width="100%"><tr><td><font style="font-size: 40;" color="white"><b> RHBank Benefits</b></font></td><td> <p align="right"><img alt="RHBank Loog" src="RHBank logo.png" width="10%"></p></td></tr></table></h3>
   </div>
   <div class="panel-body">
 <table>

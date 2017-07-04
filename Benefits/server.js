@@ -4,6 +4,7 @@ var express = require('express'),
 
 
 app.engine('html', require('ejs').renderFile);
+app.use(express.static(__dirname + '/images'));
 app.use(express.static(__dirname + '/lib'));
 app.use(cors());
 
