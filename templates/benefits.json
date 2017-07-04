@@ -282,7 +282,7 @@
       "name": "APPLICATION_DOMAIN",
       "displayName": "Application Hostname",
       "description": "The exposed hostname that will route to the Node.js service, if left blank a value will be defaulted.",
-      "value": ""
+      "value": "benefits.3scale1.rhtechofficelatam.com"
     },
     {
       "name": "GITHUB_WEBHOOK_SECRET",
@@ -308,36 +308,36 @@
       "name": "PRODS_URL",
       "displayName": "Products API URL",
       "description": "The URL of the Products API",
-      "value": ""
+      "value": "https://products-apicast-staging.gateway.3scale1.rhtechofficelatam.com:443/rest/services/products"
     },
-    {
-      "name": "STOCK_URL",
-      "displayName": "Stock API URL",
-      "description": "The URL of the Stock API",
-      "value": ""
-    },
-    {
-      "name": "STORES_URL",
-      "displayName": "Stores API URL",
-      "description": "The URL of the Stores API",
-      "value": ""
-    },
-    {
-      "name": "STORES_KEY",
-      "displayName": "Stores API Key",
-      "description": "The Key of the Stores API",
-      "value": ""
-    },
-    {
+   {
       "name": "PRODS_KEY",
       "displayName": "Products API Key",
       "description": "The Key of the Products API",
       "value": ""
     },
     {
+      "name": "STOCK_URL",
+      "displayName": "Stock API URL",
+      "description": "The URL of the Stock API",
+      "value": "https://stock-apicast-production.gateway.3scale1.rhtechofficelatam.com/odata4/Stock-API/FederatedStock/stock"
+    },
+    {
       "name": "STOCK_KEY",
       "displayName": "Stock API Key",
       "description": "The Key of the Stock API",
+      "value": ""
+    },
+    {
+      "name": "STORES_URL",
+      "displayName": "Stores API URL",
+      "description": "The URL of the Stores API",
+      "value": "https://stores-apicast-production.gateway.3scale1.rhtechofficelatam.com/store/"
+    },
+    {
+      "name": "STORES_KEY",
+      "displayName": "Stores API Key",
+      "description": "The Key of the Stores API",
       "value": ""
     }
   ]

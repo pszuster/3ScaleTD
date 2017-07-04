@@ -42,9 +42,9 @@ oc new-app --template=stores-fis --param ROUTE_HOST=stores-fis.$threescaleDomain
 oc new-project rh-sso --display-name='RedHat Single Sign-on'
 oc create serviceaccount sso-service-account
 oc policy add-role-to-user view system:serviceaccount:rh-sso:sso-service-account
-curl https://github.com/pszuster/3ScaleTD/raw/master/certs/jgroups.jceks -o jgroups.jceks
-curl https://github.com/pszuster/3ScaleTD/raw/master/certs/keystore.jks -o keystore.jks
-curl https://github.com/pszuster/3ScaleTD/raw/master/certs/truststore.jks -o truststore.jks
+curl https://raw.githubusercontent.com/pszuster/3ScaleTD/master/certs/jgroups.jceks -o jgroups.jceks
+curl https://raw.githubusercontent.com/pszuster/3ScaleTD/master/certs/keystore.jks -o keystore.jks
+curl https://raw.githubusercontent.com/pszuster/3ScaleTD/master/certs/truststore.jks -o truststore.jks
 oc secret new sso-app-secret jgroups.jceks keystore.jks truststore.jks
 oc secrets link sso-service-account sso-app-secret
 oc new-app --template=sso71-https --param HOSTNAME_HTTP=sso.$threescaleDomain --param HOSTNAME_HTTPS=secure-sso.$threescaleDomain
