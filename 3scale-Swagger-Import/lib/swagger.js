@@ -46,6 +46,11 @@ exports.import = function(path, service_id, appplan_name, method_pattern,res){
       cli.print({message: "Loading "+title+" swagger definition."});  
       res.write("<p class=\"bg-success\">Loading "+title+" swagger definition.");
     }
+	  else{
+		  res.write("<p class=\"bg-danger\">API Parsing Error</p>");
+        	  res.end();
+
+	  }
   });
 };
 
