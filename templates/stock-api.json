@@ -175,7 +175,7 @@
     "name": "create-db1"
   },
   "data": {
-    "create_db.sql": "CREATE TABLE stock (productid int(11),amount double); INSERT INTO stock(productid,amount) VALUES(1,20),(2,30),(3,1),(4,14); "
+    "create_db.sql": "CREATE TABLE stock (productid int(11),amount double); INSERT INTO stock(productid,amount) VALUES(1,20),(2,30),(3,1),(4,14),(5,22),(6,880),(7,1200),(8,532),(9,10),(10,1); "
   }
 },
 {
@@ -345,7 +345,7 @@
     "name": "create-db-pg"
   },
   "data": {
-    "create_db.sql": "CREATE TABLE public.stock\n(\n  productid integer,\n amount double precision); INSERT INTO stock (productid,amount) VALUES (1,30),(2,14),(3,40),(4,100);"
+    "create_db.sql": "CREATE TABLE public.stock\n(\n  productid integer,\n amount double precision); INSERT INTO stock (productid,amount) VALUES (1,30),(2,14),(3,40),(4,100),(5,2),(6,10),(7,32),(8,1),(9,123),(10,730);"
   }
 },
 {

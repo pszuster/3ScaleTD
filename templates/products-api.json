@@ -140,7 +140,7 @@
     "name": "create-db"
   },
   "data": {
-    "create_db.sql": "CREATE SEQUENCE public.\"Products_productID_seq\"\n INCREMENT 1\n MINVALUE 1\n  MAXVALUE 9223372036854775807;\n CREATE TABLE public.products\n(\n  productname text,\n  productprice double precision,\n  productid integer NOT NULL DEFAULT nextval('\"Products_productID_seq\"'::regclass),\n  CONSTRAINT \"productID_PK\" PRIMARY KEY (productid)\n); INSERT INTO products (productname, productprice) VALUES ('Ninja Blender',320),('Ninja Blender Pro', 515), ('Kicthenhelp Juicer',149.99), ('ArtCuisine Toaster', 79.99), ('White and Decor Toaster Oven', 49.99), ('Mexpresso Maker', 199.99), ('Mini Fridge', 229.99), ('Slow-Cooker Pot', 44.99);"
+    "create_db.sql": "CREATE SEQUENCE public.\"Products_productID_seq\"\n INCREMENT 1\n MINVALUE 1\n  MAXVALUE 9223372036854775807;\n CREATE TABLE public.products\n(\n  productname text,\n  productprice double precision,\n  productid integer NOT NULL DEFAULT nextval('\"Products_productID_seq\"'::regclass),\n  CONSTRAINT \"productID_PK\" PRIMARY KEY (productid)\n); INSERT INTO products (productname, productprice) VALUES ('Ninja Blender',320),('Ninja Blender Pro', 515), ('Kicthenhelp Juicer',149.99), ('ArtCuisine Toaster', 79.99), ('White and Decor Toaster Oven', 49.99), ('Mexpresso Maker', 199.99), ('Mini Fridge', 229.99), ('Slow-Cooker Pot', 44.99);, ('SungSamn 4-Door Refrigerator',2199.99), ('Hanilton 12 cup Food Processor',49.99)"
   }
 },
 {
