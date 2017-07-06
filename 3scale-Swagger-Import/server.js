@@ -33,7 +33,7 @@ app.post('/import', function(req,res){
 		console.log("WILDCARD: " + req.body.wildcard_domain);
 		console.log("WILDCARD-CFG: " + config.get("threescale:wildcard"));
 		console.log("FILE: " + req.body.swagger_file);
-		config.add("threescale:API","https://"+nconf.get("threescale:id")+"-admin." + nconf.get("threescale:wildcard") + "/admin/api"); 
+		config.add("threescale:API","https://"+config.get("threescale:id")+"-admin." + config.get("threescale:wildcard") + "/admin/api"); 
 		swagger.import(req.body.swagger_file, null ,null,null,res);
 		res.write('<html lang="en"><head>  <meta charset="utf-8">  <meta http-equiv=\"X-UA-Compatible" content="IE=edge,chrome=1">  <meta name="viewport" content="width=device-width, initial-scale=1">  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">  <title>3Scale Import</title></head><body>   <img src="3scale-by-redhat.png" style="width:15%;height:15%;"/>   <h1>Swagger Import Tool (non-official)</h1>');
 
