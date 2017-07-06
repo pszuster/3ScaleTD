@@ -1,4 +1,5 @@
-iptables -F
+#!/bin/sh
+sudo iptables -F
 
 h=$(hostname -s)
 name=threescale
@@ -23,23 +24,23 @@ oc create -f https://raw.githubusercontent.com/jboss-openshift/application-templ
 oc create -f https://raw.githubusercontent.com/jboss-openshift/application-templates/master/datavirt/datavirt63-basic-s2i.json
 oc create -f https://raw.githubusercontent.com/jboss-openshift/application-templates/master/eap/eap70-basic-s2i.json
 oc create -f https://raw.githubusercontent.com/jboss-fuse/application-templates/master/fis-image-streams.json
-oc create -f https://raw.githubusercontent.com/jboss-openshift/application-templates/master/webserver/jws30-tomcat8-basic-s2i.json
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/amp_cors.yml
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/products-api.json
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/stock-api.json
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/stores-api.json
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/stores-fis.json
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/sso71-https.json
-oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/swagger-import.json
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/benefits.json
+oc delete is nodejs -n openshift
+oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/swagger-import.json
 chcat -d /root/.oc/profiles/threescale/volumes/vol{01..10}
 oc new-project products-api --display-name='Products API'
 oc adm policy add-scc-to-user anyuid system:serviceaccount:products-api:default
 oc new-app --template=products-api --param HOSTNAME_HTTP=products.$threescaleDomain
 oc new-project stores-api --display-name='Stores API'
 oc adm policy add-scc-to-user anyuid system:serviceaccount:stores-api:default
-oc new-app --template=stores-soap --param HOSTNAME_HTTP=stores-soap.$threescaleDomain
-oc new-app --template=stores-fis --param ROUTE_HOST=stores-fis.$threescaleDomain
+#oc new-app --template=stores-soap --param HOSTNAME_HTTP=stores-soap.$threescaleDomain
+#oc new-app --template=stores-fis --param ROUTE_HOST=stores-fis.$threescaleDomain
 oc new-project rh-sso --display-name='RedHat Single Sign-on'
 oc create serviceaccount sso-service-account
 oc policy add-role-to-user view system:serviceaccount:rh-sso:sso-service-account
@@ -56,6 +57,6 @@ oc create serviceaccount datavirt-service-account
 oc policy add-role-to-user view system:serviceaccount:stock-api:datavirt-service-account
 oc secret link datavirt-service-account datavirt-app-config
 oc adm policy add-scc-to-user anyuid system:serviceaccount:stock-api:default
-oc new-app --template=stock-api
+#oc new-app --template=stock-api
 oc new-project swagger-import --display-name='Swagger Import Tool'
-oc new-app --tempalte=threescale-swagger-importer --param APPLICATION_DOMAIN=swagger-import.$threescaleDomain
+oc new-app --template=threescale-swagger-importer --param APPLICATION_DOMAIN=swagger-import.$threescaleDomain
