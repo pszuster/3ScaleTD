@@ -5,7 +5,7 @@ var Q = require("q");
 var request = Q.denodeify(require("request"));
 
 exports.createMappingRule= function(service_id, http_method, pattern, delta, metric_id){
-  var url = config.API+"/services/"+service_id+"/proxy/mapping_rules.json";
+  var url = config.get("threescale:API") +"/services/"+service_id+"/proxy/mapping_rules.json";
 
   var options ={
     method: 'POST',
@@ -71,7 +71,7 @@ exports.updateMappingRule= function(service_id, mapping_rule_id, http_method, pa
 }
 
 exports.getMappingRule= function(service_id, mapping_rule_id){
-  var url = config.API+"/services/"+service_id+"/proxy/mapping_rules/"+mapping_rule_id+".json";
+  var url = config.get("threescale:API") +"/services/"+service_id+"/proxy/mapping_rules/"+mapping_rule_id+".json";
   var options ={
     method: 'GET',
     url: url,
@@ -95,7 +95,7 @@ exports.getMappingRule= function(service_id, mapping_rule_id){
 }
 
 exports.listMappingRules= function(service_id){
-  var url = config.API+"/services/"+service_id+"/proxy/mapping_rules.json";
+  var url = config.get("threescale:API") +"/services/"+service_id+"/proxy/mapping_rules.json";
 
   var options ={
     method: 'GET',

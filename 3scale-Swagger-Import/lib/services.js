@@ -7,7 +7,7 @@ var request = Q.denodeify(require("request"));
 var HttpError = require('http-error-constructor');
 
 exports.createService = function(name){
-    var url = config.API+"/services.json";
+    var url = config.get("threescale:API") +"/services.json";
 	var n = name+Math.floor((Math.random() * 50) + 10);
 	var options ={
       method:'POST',

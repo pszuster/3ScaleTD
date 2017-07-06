@@ -31,5 +31,6 @@ exports.get = function(key){
 
 exports.access_token = nconf.get("threescale:access_token");
 exports.id = nconf.get("threescale:id");
-exports.url = nconf.get("threescale:url");
+exports.wildcard = nconf.get("threescale:wildcard");
+//exports.url = nconf.get("threescale:url");
 exports.API = "https://"+nconf.get("threescale:id")+"-admin." + nconf.get("threescale:wildcard") + "/admin/api";

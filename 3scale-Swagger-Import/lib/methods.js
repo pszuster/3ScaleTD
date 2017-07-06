@@ -6,7 +6,7 @@ var Q = require("q");
 var request = Q.denodeify(require("request"));
 
 exports.createMethod = function(service_id,metric_id,friendly_name, unit){
-  var url = config.API+"/services/"+service_id+"/metrics/"+metric_id+"/methods.json";
+  var url = config.get("threescale:API") +"/services/"+service_id+"/metrics/"+metric_id+"/methods.json";
 
   var options ={
     method: 'POST',
@@ -36,7 +36,7 @@ exports.createMethod = function(service_id,metric_id,friendly_name, unit){
 };
 
 exports.listMethods = function(service_id, metric_id){
-  var url = config.API+"/services/"+service_id+"/metrics/"+metric_id+"/methods.json";
+  var url = config.get("threescale:API")+"/services/"+service_id+"/metrics/"+metric_id+"/methods.json";
 
   var options ={
     method: 'GET',
@@ -61,7 +61,7 @@ exports.listMethods = function(service_id, metric_id){
 }
 
 exports.getMethodById = function(service_id, metric_id, method_id){
-  var url = config.API+"/services/"+service_id+"/metrics/"+metric_id+"/methods/"+method_id+".json";
+  var url = config.get("threescale:API")+"/services/"+service_id+"/metrics/"+metric_id+"/methods/"+method_id+".json";
 
   var options ={
     method: 'GET',

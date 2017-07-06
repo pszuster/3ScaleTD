@@ -6,7 +6,7 @@ var request = Q.denodeify(require("request"));
 var _ = require("underscore")
 
 exports.listMetrics = function(service_id){
-  var url = config.API+"/services/"+service_id+"/metrics.json?access_token=" + config.get("threescale:access_token") + "&service_id=" + service_id;
+  var url = config.get("threescale:API") +"/services/"+service_id+"/metrics.json?access_token=" + config.get("threescale:access_token") + "&service_id=" + service_id;
   var options ={
     method:'GET',
     uri: url ,/*
@@ -31,7 +31,7 @@ exports.listMetrics = function(service_id){
 };
 
 exports.createMetric = function(service_id,friendly_name,unit){
-  var url = config.API+"/services/"+service_id+"/metrics.json";
+  var url = config.get("threescale:API") +"/services/"+service_id+"/metrics.json";
 
   var options = {
     uri: url,
@@ -59,7 +59,7 @@ exports.createMetric = function(service_id,friendly_name,unit){
 };
 
 exports.getMetricById = function (service_id, metric_id){
-  var url = config.API+"/services/"+service_id+"/metrics/"+metric_id+".json";
+  var url = config.get("threescale:API") +"/services/"+service_id+"/metrics/"+metric_id+".json";
 
   var options = {
     url: url,
@@ -84,7 +84,7 @@ exports.getMetricById = function (service_id, metric_id){
 }
 
 exports.updateMetric = function(service_id, metric_id, friendly_name, unit){
-  var url = config.API+"/services/"+service_id+"/metrics/"+metric_id+".json";
+  var url = config.get("threescale:API")+"/services/"+service_id+"/metrics/"+metric_id+".json";
 
   var options = {
     url: url,
@@ -116,7 +116,7 @@ exports.updateMetric = function(service_id, metric_id, friendly_name, unit){
 }
 
 exports.deleteMetric = function(service_id, metric_id){
-  var url = config.API+"/services/"+service_id+"/metrics/"+metric_id+".json";
+  var url = config.get("threescale:API")+"/services/"+service_id+"/metrics/"+metric_id+".json";
 
   var options = {
     url: url,

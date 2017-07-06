@@ -33,7 +33,7 @@ exports.listActiveDocs = function(){
 }
 
 exports.createActiveDocs = function(file){
-  var url = config.API+"/active_docs.json";
+  var url = config.get("threescale:API") +"/active_docs.json";
 
   //Parse swagger file and extract info from it
   return SwaggerParser.parse(file)
