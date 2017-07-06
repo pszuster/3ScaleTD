@@ -20,7 +20,7 @@ exports.createService = function(name){
       rejectUnauthorized: false,
       timeout:10000
     };
-	console.log("Pre-Service-Req");
+	console.log("Pre-Service-Req - url: " + config.API);
     var response = request(options);
 
     return response.then(function (r) {
