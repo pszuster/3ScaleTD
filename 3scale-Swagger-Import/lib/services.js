@@ -20,13 +20,16 @@ exports.createService = function(name){
       rejectUnauthorized: false,
       timeout:10000
     };
+	console.log("Pre-Service-Req");
     var response = request(options);
 
     return response.then(function (r) {
+	   console.log("POST-Service-Req");
      var res  = r[0].req.res;
      try {
        var body = JSON.parse(res.body);
      } catch(e) {
+	     console.log("Error: " + e.message);
      }
       if (res.statusCode >= 300) {
         var err = new HttpError(res.statusCode)
