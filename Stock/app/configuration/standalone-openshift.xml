@@ -630,7 +630,7 @@
             </transport>
             <!-- ##TEIID_SECURE_TRANSPORT## -->
             <transport name="odbc" socket-binding="teiid-odbc" protocol="pg">
-                 <authentication security-domain="teiid-security"/>
+               <!--  <authentication security-domain="teiid-security"/>-->
             </transport>
             <translator name="jdbc-simple" module="org.jboss.teiid.translator.jdbc"/>
             <translator name="jdbc-ansi" module="org.jboss.teiid.translator.jdbc"/>
