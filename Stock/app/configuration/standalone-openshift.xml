@@ -726,7 +726,7 @@
         <socket-binding name="remoting" port="4447"/>
         <socket-binding name="teiid-jdbc" port="31000" interface="any"/>
         <socket-binding name="secure-teiid-jdbc" port="31443" interface="any"/>
-        <socket-binding name="teiid-odbc" port="35432"/>
+        <socket-binding name="teiid-odbc" port="35432" interface="any"/>
         <socket-binding name="txn-recovery-environment" port="4712"/>
         <socket-binding name="txn-status-manager" port="4713"/>
         <outbound-socket-binding name="mail-smtp">
