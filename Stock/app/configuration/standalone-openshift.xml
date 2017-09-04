@@ -671,7 +671,7 @@
             <translator name="mongodb" module="org.jboss.teiid.translator.mongodb"/>
             <translator name="cassandra" module="org.jboss.teiid.translator.cassandra"/>
             <translator name="accumulo" module="org.jboss.teiid.translator.accumulo"/>
-            <translator name="solr" module="org.jboss.teiid.translator.solr"/>
+            <!--<translator name="solr" module="org.jboss.teiid.translator.solr"/>-->
             <translator name="excel" module="org.jboss.teiid.translator.excel"/>
             <translator name="impala" module="org.jboss.teiid.translator.hive"/>
             <translator name="prestodb" module="org.jboss.teiid.translator.prestodb"/>
