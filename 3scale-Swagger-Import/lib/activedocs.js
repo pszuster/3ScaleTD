@@ -46,7 +46,8 @@ exports.createActiveDocs = function(file){
       form:{
         "access_token": config.get("threescale:access_token"),
         "name": api.info.title,
-        "system_name": slug(api.info.title+n),
+        //"system_name": slug(api.info.title+n),
+	"system_name": slug(api.info.title),
         "body": JSON.stringify(api,null,4),
         "description": api.info.description || "Activedocs file description",
         "published": true,
