@@ -18,12 +18,12 @@ echo y | oc login https://localhost:8443 --username=admin --password=admin --ins
 oc delete project myproject
 oc set env dc/router ROUTER_ALLOW_WILDCARD_ROUTES=true -n default
 oc project openshift
-oc create -f https://raw.githubusercontent.com/jboss-openshift/application-templates/master/jboss-image-streams.json
-oc create -f https://raw.githubusercontent.com/openshift/origin/master/examples/image-streams/image-streams-rhel7.json
-oc create -f https://raw.githubusercontent.com/jboss-openshift/application-templates/master/amq/amq62-basic.json
-oc create -f https://raw.githubusercontent.com/jboss-openshift/application-templates/master/datavirt/datavirt63-basic-s2i.json
-oc create -f https://raw.githubusercontent.com/jboss-openshift/application-templates/master/eap/eap70-basic-s2i.json
-oc create -f https://raw.githubusercontent.com/jboss-fuse/application-templates/master/fis-image-streams.json
+oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/jboss-image-streams.json
+oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/image-streams-rhel7.json
+oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/amq62-basic.json
+oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/datavirt63-basic-s2i.json
+oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/eap70-basic-s2i.json
+oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/fis-image-streams.json
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/amp_cors.yml
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/products-api.json
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/stock-api.json
