@@ -121,8 +121,14 @@
                 "ports": [
                     {
                         "port": 8443,
-                        "targetPort": 8443
-                    }
+                        "targetPort": 8443,
+			"name": "8443-tcp"
+                    },
+		    {
+			    "port": 8080,
+			    "targetPort": 8080,
+			    "name": "8080-tcp"
+		    }
                 ],
                 "selector": {
                     "deploymentConfig": "${APPLICATION_NAME}"
@@ -181,11 +187,13 @@
             },
             "spec": {
 		"host": "${HOSTNAME_HTTPS}",
+		"port": "8080-tcp",
                 "to": {
-                    "name": "${APPLICATION_NAME}"
+                    "name": "${APPLICATION_NAME}",
+		    "kind": "Service",
                 },
                 "tls": {
-                    "termination": "reencrypt"
+                    "termination": "edge"
                 }
             }
         },
