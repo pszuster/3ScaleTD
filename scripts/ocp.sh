@@ -50,7 +50,7 @@ oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/template
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/sso71-https.json -n openshift
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/benefits.json -n openshift
 oc delete is nodejs -n openshift
-oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/swagger-import.json
+oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/swagger-import.json -n openshift
 
 
 ### Create Assets
