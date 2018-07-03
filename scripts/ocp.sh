@@ -47,9 +47,10 @@ oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/template
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/stock-api.json -n openshift
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/stores-api.json -n openshift
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/stores-fis.json -n openshift
-oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/sso71-https.json -n openshift
+oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/sso72-image-stream.json -n openshift
+oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/sso72-x509-https.json -n openshift
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/benefits.json -n openshift
-oc delete is nodejs -n openshift
+#oc delete is nodejs -n openshift
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/swagger-import.json -n openshift
 
 
@@ -75,12 +76,12 @@ oc adm policy add-scc-to-user anyuid system:serviceaccount:stores-api:default
 oc new-project rh-sso --display-name='RedHat Single Sign-on'
 oc create serviceaccount sso-service-account
 oc policy add-role-to-user view system:serviceaccount:rh-sso:sso-service-account
-curl https://raw.githubusercontent.com/pszuster/3ScaleTD/master/certs/jgroups.jceks -o jgroups.jceks
-curl https://raw.githubusercontent.com/pszuster/3ScaleTD/master/certs/keystore.jks -o keystore.jks
-curl https://raw.githubusercontent.com/pszuster/3ScaleTD/master/certs/truststore.jks -o truststore.jks
-oc secret new sso-app-secret jgroups.jceks keystore.jks truststore.jks
-oc secrets link sso-service-account sso-app-secret
-oc new-app --template=sso71-https --param HOSTNAME_HTTP=sso.$DOMAIN --param HOSTNAME_HTTPS=secure-sso.$DOMAIN
+#curl https://raw.githubusercontent.com/pszuster/3ScaleTD/master/certs/jgroups.jceks -o jgroups.jceks
+#curl https://raw.githubusercontent.com/pszuster/3ScaleTD/master/certs/keystore.jks -o keystore.jks
+#curl https://raw.githubusercontent.com/pszuster/3ScaleTD/master/certs/truststore.jks -o truststore.jks
+#oc secret new sso-app-secret jgroups.jceks keystore.jks truststore.jks
+#oc secrets link sso-service-account sso-app-secret
+oc new-app --template=sso72-x509-https --param HOSTNAME_HTTP=sso.$DOMAIN --param HOSTNAME_HTTPS=secure-sso.$DOMAIN
 
 ## Stock API
 oc new-project stock-api --display-name='Stock API'
