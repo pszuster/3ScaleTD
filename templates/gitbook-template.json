@@ -1,0 +1,220 @@
+{
+    "kind": "Template",
+    "apiVersion": "v1",
+    "metadata": {
+        "name": "gitbook",
+        "creationTimestamp": null
+    },
+    "parameters": [
+	 {
+            "displayName": "Route Hostname",
+            "description": "The hostname for the route",
+            "name": "ROUTE_HOSTNAME",
+            "value": "",
+            "required": true
+        },
+	{
+            "displayName": "GUID",
+            "description": "The GUID for the user.",
+            "name": "GUID_PARAM",
+            "value": "",
+            "required": true
+        },
+	{
+            "displayName": "HOSTNAME",
+            "description": "The HOSTNAME for the user.",
+            "name": "HOSTNAME_PARAM",
+            "value": "",
+            "required": true
+        },
+{
+            "displayName": "SUFFIX",
+            "description": "The SUFFIX for the user.",
+            "name": "SUFFIX_PARAM",
+            "value": "",
+            "required": true
+        },
+	 {
+            "displayName": "GitBook URL",
+            "description": "The URL of the GitBook source.",
+            "name": "GITBOOK_URL_PARAM",
+            "value": "",
+            "required": true
+        }
+    ],
+    "objects": [
+        {
+            "kind": "DeploymentConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "gitbook",
+                "generation": 1,
+                "creationTimestamp": null,
+                "labels": {
+                    "app": "gitbook"
+                },
+                "annotations": {
+                    "openshift.io/generated-by": "OpenShiftWebConsole"
+                }
+            },
+            "spec": {
+                "strategy": {
+                    "type": "Rolling",
+                    "rollingParams": {
+                        "updatePeriodSeconds": 1,
+                        "intervalSeconds": 1,
+                        "timeoutSeconds": 600,
+                        "maxUnavailable": "25%",
+                        "maxSurge": "25%"
+                    },
+                    "resources": {},
+                    "activeDeadlineSeconds": 21600
+                },
+                "triggers": [
+                    {
+                        "type": "ConfigChange"
+                    }
+                    
+                ],
+                "replicas": 1,
+                "test": false,
+                "selector": {
+                    "app": "gitbook",
+                    "deploymentconfig": "gitbook"
+                },
+                "template": {
+                    "metadata": {
+                        "creationTimestamp": null,
+                        "labels": {
+                            "app": "gitbook",
+                            "deploymentconfig": "gitbook"
+                        },
+                        "annotations": {
+                            "openshift.io/generated-by": "OpenShiftWebConsole"
+                        }
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "name": "gitbook",
+                                "image": "quay.io/pszuster/gitbook:latest",
+                                "ports": [
+                                    {
+                                        "containerPort": 4000,
+                                        "protocol": "TCP"
+                                    },
+                                    {
+                                        "containerPort": 35729,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "env": [
+                                    {
+                                        "name": "GITBOOK_URL",
+                                        "value": "${GITBOOK_URL_PARAM}"
+                                    },
+                                    {
+                                        "name": "GUID",
+                                        "value": "${GUID_PARAM}"
+                                    },
+                                    {
+                                        "name": "HOSTNAME",
+                                        "value": "${HOSTNAME_PARAM}"
+                                    },
+                                    {
+                                        "name": "SUFFIX",
+                                        "value": "${SUFFIX_PARAM}"
+                                    }
+
+                                ],
+                                "resources": {},
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File",
+                                "imagePullPolicy": "Always"
+                            }
+                        ],
+                        "restartPolicy": "Always",
+                        "terminationGracePeriodSeconds": 30,
+                        "dnsPolicy": "ClusterFirst",
+                        "securityContext": {},
+                        "schedulerName": "default-scheduler"
+                    }
+                }
+            },
+            "status": {
+                "latestVersion": 0,
+                "observedGeneration": 0,
+                "replicas": 0,
+                "updatedReplicas": 0,
+                "availableReplicas": 0,
+                "unavailableReplicas": 0
+            }
+        },
+        {
+            "kind": "Service",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "gitbook",
+                "creationTimestamp": null,
+                "labels": {
+                    "app": "gitbook"
+                },
+                "annotations": {
+                    "openshift.io/generated-by": "OpenShiftWebConsole"
+                }
+            },
+            "spec": {
+                "ports": [
+                    {
+                        "name": "4000-tcp",
+                        "protocol": "TCP",
+                        "port": 4000,
+                        "targetPort": 4000
+                    },
+                    {
+                        "name": "35729-tcp",
+                        "protocol": "TCP",
+                        "port": 35729,
+                        "targetPort": 35729
+                    }
+                ],
+                "selector": {
+                    "deploymentconfig": "gitbook"
+                },
+                "type": "ClusterIP",
+                "sessionAffinity": "None"
+            },
+            "status": {
+                "loadBalancer": {}
+            }
+        },
+        {
+            "kind": "Route",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "gitbook",
+                "creationTimestamp": null,
+                "labels": {
+                    "app": "gitbook"
+                },
+                "annotations": {
+                    "openshift.io/host.generated": "true"
+                }
+            },
+            "spec": {
+                "host": "${ROUTE_HOSTNAME}",
+                "to": {
+                    "kind": "Service",
+                    "name": "gitbook",
+                    "weight": 100
+                },
+                "port": {
+                    "targetPort": "4000-tcp"
+                },
+                "wildcardPolicy": "None"
+            },
+            "status": {
+            }
+        }
+    ]
+}
