@@ -35,6 +35,8 @@ oc delete project myproject
 
 ### Fix router to accept wildcard routes
 oc scale dc router --replicas=0 --timeout=0s -n default
+ROUTER_POD_ID=$(oc get pod -l router=router -n default -o json | jq .items[0].metadata.name)
+oc delete pod $ROUTER_POD_ID --grace-period=0 --force
 oc set env deploymentconfig/router ROUTER_ALLOW_WILDCARD_ROUTES=true -n default
 oc scale --replicas=1 deploymentconfig/router -n default
 #chcat -d /root/.oc/profiles/$profile/volumes/vol{01..10}
