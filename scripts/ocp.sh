@@ -58,9 +58,9 @@ oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/template
 
 ### GitBook
 oc new-project gitbook --display-name="GitBook"
-oc create -f https://raw.githubusercontent.com/pszuster/Fuse7TD/master/gitbookApp/gitbook-template.json
+oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/gitbook-template.json
 oc adm policy add-scc-to-user anyuid system:serviceaccount:gitbook:default
-oc new-app --template=gitbook --param=ROUTE_HOSTNAME=gitbook.$SUFFIX --param=GUID_PARAM=$myGUID --param=GITBOOK_URL_PARAM=https://github.com/pszuster/3scaleTD_gitbook
+oc new-app --template=gitbook --param=ROUTE_HOSTNAME=gitbook.$SUFFIX --param=GUID_PARAM=$myGUID --param=GITBOOK_URL_PARAM=https://github.com/pszuster/3scaleTD_gitbook --param=HOSTNAME_PARAM=$HOST --param=SUFFIX_PARAM=$SUFFIX
 
 ## Products API
 oc new-project products-api --display-name='Products API'
