@@ -190,7 +190,7 @@
 		"port": "8080-tcp",
                 "to": {
                     "name": "${APPLICATION_NAME}",
-		    "kind": "Service",
+		    "kind": "Service"
                 },
                 "tls": {
                     "termination": "edge"
