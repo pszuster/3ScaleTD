@@ -33,6 +33,8 @@ sleep 10s
 echo y | oc login -u system:admin --insecure-skip-tls-verify
 oc delete project myproject
 
+oc set env deploymentconfig/router ROUTER_ALLOW_WILDCARD_ROUTES=true -n default
+
 chcat -d /root/.oc/profiles/$profile/volumes/vol{01..10}
 
 ### IMPORT IMAGE STREAMS
