@@ -33,9 +33,12 @@ sleep 10s
 echo y | oc login -u system:admin --insecure-skip-tls-verify
 oc delete project myproject
 
+### Fix router to accept wildcard routes
+oc adm router --replicas=0
 oc set env deploymentconfig/router ROUTER_ALLOW_WILDCARD_ROUTES=true -n default
+oc scale dc/router --replicas=1
 
-chcat -d /root/.oc/profiles/$profile/volumes/vol{01..10}
+#chcat -d /root/.oc/profiles/$profile/volumes/vol{01..10}
 
 ### IMPORT IMAGE STREAMS
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/jboss-image-streams.json -n openshift
