@@ -2017,8 +2017,7 @@ parameters:
   required: true
 - name: ADMIN_PASSWORD
   required: true
-  generate: expression
-  from: "[a-z0-9]{8}"
+  value: admin
 - name: ADMIN_USERNAME
   value: admin
   required: true
@@ -2038,7 +2037,7 @@ parameters:
 - name: WILDCARD_POLICY
   description: Use "Subdomain" to create a wildcard route for apicast wildcard router
   required: true
-  value: "None"
+  value: "Subdomain"
 - name: TENANT_NAME
   description: "Tenant name under the root that Admin UI will be available with -admin suffix."
   required: true
@@ -2113,8 +2112,7 @@ parameters:
   required: true
 - name: MASTER_PASSWORD
   required: true
-  generate: expression
-  from: "[a-z0-9]{8}"
+  value: master
 - name: MASTER_ACCESS_TOKEN
   required: true
   generate: expression
