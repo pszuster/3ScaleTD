@@ -34,7 +34,7 @@ echo y | oc login -u system:admin --insecure-skip-tls-verify
 oc delete project myproject
 
 ### Fix router to accept wildcard routes
-oc scale --replicas=0 deploymentconfig/router -n default
+oc scale dc router --replicas=0 --timeout=0s -n default
 oc set env deploymentconfig/router ROUTER_ALLOW_WILDCARD_ROUTES=true -n default
 oc scale --replicas=1 deploymentconfig/router -n default
 #chcat -d /root/.oc/profiles/$profile/volumes/vol{01..10}
