@@ -42,7 +42,7 @@ oc scale --replicas=1 deploymentconfig/router -n default
 #chcat -d /root/.oc/profiles/$profile/volumes/vol{01..10}
 
 ### IMPORT IMAGE STREAMS
-oc delete is redhat-sso72-openshift -n openshift
+oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/sso72-image-stream.json -n openshift
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/jboss-image-streams.json -n openshift
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/image-streams-rhel7.json -n openshift
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/amq62-basic.json -n openshift
@@ -54,10 +54,8 @@ oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/template
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/stock-api.json -n openshift
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/stores-api.json -n openshift
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/stores-fis.json -n openshift
-oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/sso72-image-stream.json -n openshift
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/sso72-x509-https.json -n openshift
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/benefits.json -n openshift
-#oc delete is nodejs -n openshift
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/swagger-import.json -n openshift
 
 
