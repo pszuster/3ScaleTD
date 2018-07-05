@@ -185,7 +185,7 @@
                 }
             },
             "spec": {
-		"host": "${HOSTNAME_HTTPS}",
+		"host": "${HOSTNAME_HTTP}",
 		"port": "8080-tcp",
                 "to": {
                     "name": "${APPLICATION_NAME}",
