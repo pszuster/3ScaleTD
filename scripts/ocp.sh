@@ -82,12 +82,7 @@ oc adm policy add-scc-to-user anyuid system:serviceaccount:stores-api:default
 oc new-project rh-sso --display-name='RedHat Single Sign-on'
 oc create serviceaccount sso-service-account
 oc policy add-role-to-user view system:serviceaccount:rh-sso:sso-service-account
-#curl https://raw.githubusercontent.com/pszuster/3ScaleTD/master/certs/jgroups.jceks -o jgroups.jceks
-#curl https://raw.githubusercontent.com/pszuster/3ScaleTD/master/certs/keystore.jks -o keystore.jks
-#curl https://raw.githubusercontent.com/pszuster/3ScaleTD/master/certs/truststore.jks -o truststore.jks
-#oc secret new sso-app-secret jgroups.jceks keystore.jks truststore.jks
-#oc secrets link sso-service-account sso-app-secret
-oc new-app --template=sso72-x509-https --param HOSTNAME_HTTP=sso.$DOMAIN --param HOSTNAME_HTTPS=secure-sso.$DOMAIN
+oc new-app --template=sso72-x509-https --param HOSTNAME_HTTP=sso.$DOMAIN --param SSO_ADMIN_USERNAME=admin --param SSO_ADMIN_PASSWORD=password --param SSO_SERVICE_USERNAME=admin --param SSO_SERVICE_PASSWORD=password
 
 ## Stock API
 oc new-project stock-api --display-name='Stock API'
