@@ -175,21 +175,20 @@
         {
             "kind": "Route",
             "apiVersion": "v1",
+            "id": "${APPLICATION_NAME}-http",
             "metadata": {
                 "name": "${APPLICATION_NAME}",
                 "labels": {
                     "application": "${APPLICATION_NAME}"
                 },
                 "annotations": {
-                    "description": "Route for application's https service."
+                    "description": "Route for application's http service."
                 }
             },
             "spec": {
-		"host": "${HOSTNAME_HTTP}",
-		"port": "8080-tcp",
+                "host": "${HOSTNAME_HTTP}",
                 "to": {
-                    "name": "${APPLICATION_NAME}",
-		    "kind": "Service"
+                    "name": "${APPLICATION_NAME}"
                 },
                 "tls": {
                     "termination": "edge"
