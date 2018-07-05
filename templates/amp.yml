@@ -1216,7 +1216,7 @@ objects:
   metadata:
     name: apicast-wildcard-router-route
   spec:
-    host: apicast-wildcard.gw.${WILDCARD_DOMAIN}
+    host: apicast-wildcard.3scale.${WILDCARD_DOMAIN}
     to:
       kind: Service
       name: apicast-wildcard-router
