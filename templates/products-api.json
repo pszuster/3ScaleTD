@@ -212,7 +212,7 @@
             "containers": [
               {
                 "name": "postgresql",
-                "image": "postgres",
+                "image": "postgres:9.3",
                 "ports": [
                   {
                     "containerPort": 5432,
