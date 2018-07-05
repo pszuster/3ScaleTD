@@ -70,7 +70,7 @@ oc new-app --template=gitbook --param=ROUTE_HOSTNAME=gitbook.$SUFFIX --param=GUI
 ## Products API
 oc new-project products-api --display-name='Products API'
 oc adm policy add-scc-to-user anyuid system:serviceaccount:products-api:default
-oc new-app --template=products-api --param HOSTNAME_HTTP=products.$DOMAIN
+oc new-app --template=products-api --param HOSTNAME_HTTP=products.$SUFFIX
 
 ## Stores API
 
@@ -81,7 +81,7 @@ oc adm policy add-scc-to-user anyuid system:serviceaccount:stores-api:default
 oc new-project rh-sso --display-name='RedHat Single Sign-on'
 oc create serviceaccount sso-service-account
 oc policy add-role-to-user view system:serviceaccount:rh-sso:sso-service-account
-oc new-app --template=sso72-x509-https --param HOSTNAME_HTTP=sso.$DOMAIN --param SSO_ADMIN_USERNAME=admin --param SSO_ADMIN_PASSWORD=password --param SSO_SERVICE_USERNAME=admin --param SSO_SERVICE_PASSWORD=password
+oc new-app --template=sso72-x509-https --param HOSTNAME_HTTP=sso.$SUFFIX --param SSO_ADMIN_USERNAME=admin --param SSO_ADMIN_PASSWORD=password --param SSO_SERVICE_USERNAME=admin --param SSO_SERVICE_PASSWORD=password
 
 ## Stock API
 oc new-project stock-api --display-name='Stock API'
@@ -94,4 +94,4 @@ oc adm policy add-scc-to-user anyuid system:serviceaccount:stock-api:default
 
 ## Swagger Import Tool
 oc new-project swagger-import --display-name='Swagger Import Tool'
-oc new-app --template=threescale-swagger-importer --param APPLICATION_DOMAIN=swagger-import.$DOMAIN
+oc new-app --template=threescale-swagger-importer --param APPLICATION_DOMAIN=swagger-import.$SUFFIX
