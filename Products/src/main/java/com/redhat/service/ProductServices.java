@@ -29,7 +29,7 @@ public class ProductServices {
 	ProductDao productDAO;
 	
 	@ApiOperation(value="Get all Products")
-	@Path("/products")
+	@Path("/allproducts")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Product> getAllProducts(){
