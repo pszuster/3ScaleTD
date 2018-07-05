@@ -42,6 +42,7 @@ oc scale --replicas=1 deploymentconfig/router -n default
 #chcat -d /root/.oc/profiles/$profile/volumes/vol{01..10}
 
 ### IMPORT IMAGE STREAMS
+oc delete is redhat-sso72-openshift -n openshift
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/jboss-image-streams.json -n openshift
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/image-streams-rhel7.json -n openshift
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/amq62-basic.json -n openshift
