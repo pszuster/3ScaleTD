@@ -175,7 +175,6 @@
         {
             "kind": "Route",
             "apiVersion": "v1",
-            "id": "${APPLICATION_NAME}-https",
             "metadata": {
                 "name": "${APPLICATION_NAME}",
                 "labels": {
