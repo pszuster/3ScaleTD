@@ -52,7 +52,7 @@ oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/template
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/amp.yml -n openshift
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/products-api.json -n openshift
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/stock-api.json -n openshift
-oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/stores-api.json -n openshift
+oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/stores-soap.json -n openshift
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/stores-fis.json -n openshift
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/sso72-x509-https.json -n openshift
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/benefits.json -n openshift
