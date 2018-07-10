@@ -213,7 +213,7 @@
             "containers": [
               {
                 "name": "mysql",
-                "image": "mysql/mysql-server",
+                "image": "mysql/mysql-server:5.7",
                 "ports": [
                   {
                     "containerPort": 3306,
