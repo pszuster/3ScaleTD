@@ -61,6 +61,12 @@ oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/template
 
 ### Create Assets
 
+### Apicurio
+oc new-project apicurio --display-name="Apicurio"
+oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/apicurio-template.yml -n openshift
+oc new-app --template=apicurio-studio --param=SUFFIX=$SUFFIX
+
+
 ### GitBook
 oc new-project gitbook --display-name="GitBook"
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/master/templates/gitbook-template.json
