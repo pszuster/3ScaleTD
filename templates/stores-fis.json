@@ -38,7 +38,7 @@
     {
       "name": "GIT_REF",
       "displayName": "Git Reference",
-      "value": "master",
+      "value": "v2.0",
       "description": "Set this to a branch name, tag or other ref of your repository if you are not using the default branch."
     },
     {
