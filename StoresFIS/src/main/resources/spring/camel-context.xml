@@ -19,7 +19,7 @@
     <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
         <restConfiguration apiContextPath="/api-docs" bindingMode="auto"
             component="servlet" enableCORS="true">
-            <apiProperty key="api.title" value="Stores API"/>
+            <apiProperty key="api.title" value="Stores"/>
             <apiProperty key="api.version" value="1.0.0"/>
             <apiProperty key="api.description" value="Create, Delete and Retrieve Stores"/>
         </restConfiguration>
