@@ -49,7 +49,7 @@
             "description": "Set this to a branch name, tag or other ref of your repository if you are not using the default branch.",
             "displayName": "Git Reference",
             "name": "SOURCE_REPOSITORY_REF",
-            "value": "master",
+            "value": "v2.0",
             "required": false
         },
         {
