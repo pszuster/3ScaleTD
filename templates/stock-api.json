@@ -248,7 +248,7 @@
             "containers": [
               {
                 "name": "mysql",
-                "image": "mysql/mysql-server",
+                "image": "mysql/mysql-server:5.7",
                 "ports": [
                   {
                     "containerPort": 3306,
@@ -417,7 +417,7 @@
             "containers": [
               {
                 "name": "postgresql",
-                "image": "postgres",
+                "image": "postgres:9.3",
                 "ports": [
                   {
                     "containerPort": 5432,
