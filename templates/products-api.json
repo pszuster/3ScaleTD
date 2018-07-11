@@ -42,7 +42,7 @@
             "displayName": "Git Reference",
             "description": "Git branch/tag reference",
             "name": "SOURCE_REPOSITORY_REF",
-            "value": "master",
+            "value": "v2.0",
             "required": false
         },
         {
