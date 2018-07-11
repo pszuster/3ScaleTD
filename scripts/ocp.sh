@@ -31,7 +31,7 @@ oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/v2.0/templates/
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/v2.0/templates/stores-fis.json
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/v2.0/templates/sso71-https.json
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/v2.0/templates/benefits.json
-oc delete is nodejs -n openshift
+#oc delete is nodejs -n openshift
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/v2.0/templates/swagger-import.json
 chcat -d /root/.oc/profiles/threescale/volumes/vol{01..10}
 oc new-project products-api --display-name='Products API'
