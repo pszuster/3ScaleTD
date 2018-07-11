@@ -15,7 +15,8 @@ exports.createService = function(name){
       form:{
         "access_token": config.get("threescale:access_token"),
         "name": name, //TODO get rid of random
-        "system_name": slug(n,"_")
+        "system_name": slug(n,"_"),
+	"description": name
       },
       rejectUnauthorized: false,
       timeout:10000
