@@ -18,6 +18,7 @@ echo y | oc login https://localhost:8443 --username=admin --password=admin --ins
 oc delete project myproject
 oc set env dc/router ROUTER_ALLOW_WILDCARD_ROUTES=true -n default
 oc project openshift
+oc delete is nodejs -n openshift
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/v2.0/templates/jboss-image-streams.json
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/v2.0/templates/image-streams-rhel7.json
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/v2.0/templates/amq62-basic.json
@@ -31,7 +32,6 @@ oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/v2.0/templates/
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/v2.0/templates/stores-fis.json
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/v2.0/templates/sso71-https.json
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/v2.0/templates/benefits.json
-#oc delete is nodejs -n openshift
 oc create -f https://raw.githubusercontent.com/pszuster/3ScaleTD/v2.0/templates/swagger-import.json
 chcat -d /root/.oc/profiles/threescale/volumes/vol{01..10}
 oc new-project products-api --display-name='Products API'
