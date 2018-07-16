@@ -22,10 +22,17 @@
     "message": "A new RH-SSO service has been created in your project. The admin username/password for accessing the master realm via the RH-SSO console is ${SSO_ADMIN_USERNAME}/${SSO_ADMIN_PASSWORD}. The HTTPS keystore used for serving secure content, the JGroups keystore used for securing JGroups communications, and server truststore used for securing RH-SSO requests were automatically created via OpenShift's service serving x509 certificate secrets.",
     "parameters": [
           {
+            "displayName": "Custom https Route Hostname",
+            "description": "Custom hostname for https service route.  Leave blank for default hostname, e.g.: <application-name>.<project>.<default-domain-suffix>",
+            "name": "HOSTNAME_HTTPS",
+            "value": "sso.apps-REPL.generic.opentlc.com",
+            "required": false
+        },
+	{
             "displayName": "Custom http Route Hostname",
             "description": "Custom hostname for http service route.  Leave blank for default hostname, e.g.: <application-name>.<project>.<default-domain-suffix>",
             "name": "HOSTNAME_HTTP",
-            "value": "sso.apps-REPL.generic.opentlc.com",
+            "value": "sso-unsecured.apps-REPL.generic.opentlc.com",
             "required": false
         },
 	    {
@@ -172,6 +179,33 @@
                 }
             }
         },
+{
+    "kind": "Route",
+    "apiVersion": "v1",
+    "metadata": {
+        "name": "sso-unsecured",
+        "creationTimestamp": null,
+        "labels": {
+            "app": "sso72-x509-https",
+            "application": "sso",
+            "template": "sso72-x509-https",
+            "xpaas": "1.4.14"
+        }
+    },
+    "spec": {
+        "host": "${HOSTNAME_HTTP}",
+        "to": {
+            "kind": "Service",
+            "name": "sso-unsecured",
+            "weight": 100
+        },
+        "port": {
+            "targetPort": "8080-tcp"
+        },
+        "wildcardPolicy": "None"
+    }
+}
+,
         {
             "kind": "Route",
             "apiVersion": "v1",
@@ -186,7 +220,7 @@
                 }
             },
             "spec": {
-                "host": "${HOSTNAME_HTTP}",
+                "host": "${HOSTNAME_HTTPS<<}",
                 "to": {
 		    "kind": "Service",
 		    "name": "sso",
