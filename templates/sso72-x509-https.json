@@ -220,7 +220,7 @@
                 }
             },
             "spec": {
-                "host": "${HOSTNAME_HTTPS<<}",
+                "host": "${HOSTNAME_HTTPS}",
                 "to": {
 		    "kind": "Service",
 		    "name": "sso",
