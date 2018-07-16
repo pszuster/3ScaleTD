@@ -87,7 +87,7 @@ oc adm policy add-scc-to-user anyuid system:serviceaccount:stores-api:default
 oc new-project rh-sso --display-name='RedHat Single Sign-on'
 oc create serviceaccount sso-service-account
 oc policy add-role-to-user view system:serviceaccount:rh-sso:sso-service-account
-oc new-app --template=sso72-x509-https --param HOSTNAME_HTTP=sso.$SUFFIX --param SSO_ADMIN_USERNAME=admin --param SSO_ADMIN_PASSWORD=password --param SSO_SERVICE_USERNAME=admin --param SSO_SERVICE_PASSWORD=password
+oc new-app --template=sso72-x509-https --param HOSTNAME_HTTP=sso.$SUFFIX --param SSO_ADMIN_USERNAME=admin --param SSO_ADMIN_PASSWORD=password --param SSO_SERVICE_USERNAME=admin --param SSO_SERVICE_PASSWORD=password --param SSO_REALM=3scaleRealm
 
 ## Stock API
 oc new-project stock-api --display-name='Stock API'
