@@ -196,7 +196,7 @@
         "host": "${HOSTNAME_HTTP}",
         "to": {
             "kind": "Service",
-            "name": "sso-unsecured",
+            "name": "sso",
             "weight": 100
         },
         "port": {
