@@ -6,7 +6,7 @@
     "title": "Stock API"
   },
   "host": "stock-apicast-production.gateway.3scale1.rhtechofficelatam.com",
-  "basePath": "/odata4/Stock-API/FederatedStock",
+  "basePath": "/",
   "schemes": [
     "https"
   ],
